@@ -7,537 +7,185 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a3a5c;
-    --navy-dark: #0f2340;
-    --blue: #2563a8;
-    --blue-light: #dbeafe;
-    --blue-mid: #93c5fd;
-    --gold: #b45309;
-    --gold-bg: #fffbeb;
-    --gold-border: #fde68a;
-    --green: #166534;
-    --green-bg: #f0fdf4;
-    --green-border: #86efac;
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-400: #94a3b8;
-    --gray-600: #475569;
-    --gray-800: #1e293b;
-    --red: #dc2626;
-    --white: #ffffff;
-    --radius: 6px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --navy:#1a3a5c;--navy-dark:#0f2340;--blue:#2563a8;
+    --blue-light:#dbeafe;--blue-mid:#93c5fd;
+    --gold:#b45309;--gold-bg:#fffbeb;--gold-border:#fde68a;
+    --green:#166534;--green-bg:#f0fdf4;--green-border:#86efac;
+    --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
+    --gray-400:#94a3b8;--gray-600:#475569;--gray-800:#1e293b;
+    --red:#dc2626;--radius:6px;
+    --shadow:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md:0 4px 12px rgba(0,0,0,0.1);
   }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--gray-800);font-size:15px;line-height:1.6;}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .site-header{background:var(--navy-dark);padding:0 40px;display:flex;align-items:center;gap:16px;height:56px;border-bottom:3px solid var(--blue);}
+  .site-header .seal{width:32px;height:32px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .site-header span{color:rgba(255,255,255,0.9);font-size:13px;font-weight:500;letter-spacing:.02em;}
+  .site-header .divider{color:rgba(255,255,255,0.3);margin:0 4px;}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--gray-100);
-    color: var(--gray-800);
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  .hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#1e4d8c 100%);padding:48px 40px 40px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:0;right:0;bottom:0;width:40%;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:.5;}
+  .hero-tag{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;margin-bottom:16px;}
+  .hero h1{font-family:'Source Serif 4',serif;font-size:32px;font-weight:600;color:#fff;line-height:1.25;max-width:640px;margin-bottom:16px;}
+  .hero p{color:rgba(255,255,255,0.75);max-width:580px;font-size:15px;margin-bottom:8px;}
+  .hero p.note{font-size:13px;color:rgba(255,255,255,0.6);}
+  .faq-link{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:underline;cursor:pointer;margin-top:8px;display:inline-block;}
 
-  /* ── HEADER ── */
-  .site-header {
-    background: var(--navy-dark);
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    height: 56px;
-    border-bottom: 3px solid var(--blue);
-  }
-  .site-header .seal {
-    width: 32px; height: 32px;
-    background: var(--blue);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .site-header span {
-    color: rgba(255,255,255,0.9);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-  .site-header .divider { color: rgba(255,255,255,0.3); margin: 0 4px; }
+  .stats-bar{background:#fff;border-bottom:1px solid var(--gray-200);display:flex;box-shadow:var(--shadow);}
+  .stat-item{flex:1;padding:18px 24px;border-right:1px solid var(--gray-200);text-align:center;}
+  .stat-item:last-child{border-right:none;}
+  .stat-num{font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:var(--navy);display:block;}
+  .stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-600);font-weight:500;}
 
-  /* ── HERO BANNER ── */
-  .hero {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4d8c 100%);
-    padding: 48px 40px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: 40%;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-  }
-  .hero-tag {
-    display: inline-block;
-    background: var(--blue);
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 3px;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Source Serif 4', serif;
-    font-size: 32px;
-    font-weight: 600;
-    color: white;
-    line-height: 1.25;
-    max-width: 640px;
-    margin-bottom: 16px;
-  }
-  .hero p {
-    color: rgba(255,255,255,0.75);
-    max-width: 580px;
-    font-size: 15px;
-    margin-bottom: 8px;
-  }
-  .hero p.note {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-  }
+  .criteria-band{background:var(--gray-50);border-bottom:1px solid var(--gray-200);padding:28px 40px;}
+  .criteria-band h2{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:16px;font-style:italic;}
+  .criteria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .criteria-card{background:#fff;border:1px solid var(--gray-200);border-top:3px solid var(--blue);border-radius:var(--radius);padding:16px 18px;}
+  .criteria-card h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+  .criteria-card p{font-size:13px;color:var(--gray-600);line-height:1.5;}
 
-  /* ── STATS BAR ── */
-  .stats-bar {
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    display: flex;
-    box-shadow: var(--shadow);
-  }
-  .stat-item {
-    flex: 1;
-    padding: 18px 24px;
-    border-right: 1px solid var(--gray-200);
-    text-align: center;
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Source Serif 4', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--navy);
-    display: block;
-  }
-  .stat-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--gray-600);
-    font-weight: 500;
-  }
+  /* OZ 1.0 — no icon */
+  .oz1-band{background:var(--gold-bg);border-bottom:1px solid var(--gold-border);padding:20px 40px;}
+  .oz1-band h3{font-size:13px;font-weight:600;color:var(--gold);margin-bottom:6px;}
+  .oz1-band p{font-size:13px;color:#78350f;line-height:1.5;}
+  .oz1-placeholder{font-style:italic;color:#a16207;margin-top:6px;}
 
-  /* ── WHAT MAKES A STRONG NOMINATION ── */
-  .criteria-band {
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 28px 40px;
-  }
-  .criteria-band h2 {
-    font-family: 'Source Serif 4', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 16px;
-    font-style: italic;
-  }
-  .criteria-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .criteria-card {
-    background: white;
-    border: 1px solid var(--gray-200);
-    border-top: 3px solid var(--blue);
-    border-radius: var(--radius);
-    padding: 16px 18px;
-  }
-  .criteria-card h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-  .criteria-card p {
-    font-size: 13px;
-    color: var(--gray-600);
-    line-height: 1.5;
-  }
+  .progress-nav{background:#fff;border-bottom:1px solid var(--gray-200);padding:0 40px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .progress-steps{display:flex;overflow-x:auto;}
+  .step-tab{padding:14px 20px;font-size:13px;font-weight:500;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;user-select:none;}
+  .step-tab:hover{color:var(--navy);}
+  .step-tab.active{color:var(--navy);border-bottom-color:var(--blue);font-weight:600;}
+  .step-tab.completed{color:var(--blue);}
+  .step-tab .check{display:none;margin-right:4px;}
+  .step-tab.completed .check{display:inline;}
 
-  /* ── OZ 1.0 BOX ── */
-  .oz1-band {
-    background: var(--gold-bg);
-    border-bottom: 1px solid var(--gold-border);
-    padding: 20px 40px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .oz1-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-  .oz1-band h3 { font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 4px; }
-  .oz1-band p { font-size: 13px; color: #78350f; line-height: 1.5; }
-  .oz1-placeholder { font-style: italic; color: #a16207; margin-top: 6px; }
+  .form-layout{max-width:860px;margin:0 auto;padding:36px 40px 80px;}
+  .form-section{display:none;}
+  .form-section.active{display:block;}
 
-  /* ── PROGRESS NAV ── */
-  .progress-nav {
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0 40px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .progress-steps {
-    display: flex;
-    overflow-x: auto;
-  }
-  .step-tab {
-    padding: 14px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gray-400);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .step-tab:hover { color: var(--navy); }
-  .step-tab.active { color: var(--navy); border-bottom-color: var(--blue); font-weight: 600; }
-  .step-tab.completed { color: var(--blue); }
-  .step-tab .check { display: none; margin-right: 4px; color: var(--blue); }
-  .step-tab.completed .check { display: inline; }
+  .section-header{margin-bottom:28px;}
+  .section-header .letter{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;}
+  .section-header h2{font-family:'Source Serif 4',serif;font-size:26px;font-weight:600;color:var(--navy-dark);margin-bottom:8px;}
+  .section-header p{color:var(--gray-600);font-size:14px;}
 
-  /* ── MAIN LAYOUT ── */
-  .form-layout {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 36px 40px 80px;
-  }
+  .info-box{border-radius:var(--radius);padding:16px 20px;margin-bottom:28px;border:1px solid;font-size:14px;line-height:1.6;}
+  .info-box.blue{background:var(--blue-light);border-color:var(--blue-mid);color:#1e3a5f;}
+  .info-box.green{background:var(--green-bg);border-color:var(--green-border);color:#14532d;}
+  .info-box h4{font-weight:600;margin-bottom:6px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;}
+  .info-box p+p{margin-top:8px;}
 
-  /* ── FORM SECTIONS ── */
-  .form-section { display: none; }
-  .form-section.active { display: block; }
+  .field-group{margin-bottom:24px;}
+  .field-group+.field-group{border-top:1px solid var(--gray-100);padding-top:24px;}
+  .no-sep{border-top:none!important;padding-top:0!important;}
+  .subsection-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--navy);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--gray-200);}
+  label.field-label{display:block;font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:6px;}
+  label.field-label .req{color:var(--red);margin-left:2px;}
+  label.field-label .opt{font-weight:400;color:var(--gray-400);font-size:12px;margin-left:6px;}
+  .field-hint{font-size:13px;color:var(--gray-600);margin-bottom:8px;font-style:italic;line-height:1.5;}
 
-  .section-header {
-    margin-bottom: 28px;
-  }
-  .section-header .letter {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 4px;
-  }
-  .section-header h2 {
-    font-family: 'Source Serif 4', serif;
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--navy-dark);
-    margin-bottom: 8px;
-  }
-  .section-header p {
-    color: var(--gray-600);
-    font-size: 14px;
-  }
+  input[type="text"],input[type="email"],input[type="url"],select,textarea{width:100%;border:1px solid var(--gray-200);border-radius:var(--radius);padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray-800);background:#fff;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,168,.12);}
+  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a3b8' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer;}
+  textarea{resize:vertical;min-height:90px;line-height:1.5;}
 
-  /* ── INFO BOXES ── */
-  .info-box {
-    border-radius: var(--radius);
-    padding: 16px 20px;
-    margin-bottom: 28px;
-    border: 1px solid;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .info-box.blue { background: var(--blue-light); border-color: var(--blue-mid); color: #1e3a5f; }
-  .info-box.green { background: var(--green-bg); border-color: var(--green-border); color: #14532d; }
-  .info-box h4 { font-weight: 600; margin-bottom: 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .info-box p + p { margin-top: 8px; }
+  .options-list{display:flex;flex-direction:column;gap:8px;}
+  .options-list.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .option-item{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:10px 14px;border:1px solid var(--gray-200);border-radius:var(--radius);background:#fff;transition:all .12s;font-size:14px;line-height:1.4;user-select:none;}
+  .option-item:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+  .option-item input{width:auto;flex-shrink:0;margin-top:2px;accent-color:var(--blue);cursor:pointer;}
+  .option-item.selected{border-color:var(--blue);background:var(--blue-light);}
 
-  /* ── FIELD GROUPS ── */
-  .field-group {
-    margin-bottom: 24px;
-  }
-  .field-group + .field-group { border-top: 1px solid var(--gray-100); padding-top: 24px; }
+  .two-col-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .three-col-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
 
-  .subsection-title {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--navy);
-    margin: 32px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--gray-200);
-  }
+  .conditional{display:none;}
+  .conditional.show{display:block;}
 
-  label.field-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin-bottom: 6px;
-  }
-  label.field-label .req { color: var(--red); margin-left: 2px; }
-  label.field-label .opt {
-    font-weight: 400;
-    color: var(--gray-400);
-    font-size: 12px;
-    margin-left: 6px;
-  }
-  .field-hint {
-    font-size: 13px;
-    color: var(--gray-600);
-    margin-bottom: 8px;
-    font-style: italic;
-    line-height: 1.5;
-  }
+  /* PATH CARDS — no icons */
+  .path-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+  .path-card{border:2px solid var(--gray-200);border-radius:8px;padding:20px 22px;cursor:pointer;transition:all .15s;background:#fff;}
+  .path-card:hover{border-color:var(--blue-mid);}
+  .path-card.selected{border-color:var(--blue);background:var(--blue-light);}
+  .path-card h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+  .path-card p{font-size:13px;color:var(--gray-600);line-height:1.4;}
 
-  /* ── INPUTS ── */
-  input[type="text"], input[type="email"], select, textarea {
-    width: 100%;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 9px 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--gray-800);
-    background: white;
-    transition: border-color 0.15s, box-shadow 0.15s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  input[type="text"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(37,99,168,0.12);
-  }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a3b8' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; cursor: pointer; }
-  textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+  .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--gray-200);}
+  .btn{padding:10px 24px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
+  .btn-primary{background:var(--navy);color:#fff;}
+  .btn-primary:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-md);}
+  .btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--gray-200);}
+  .btn-secondary:hover{border-color:var(--navy);}
+  .btn-submit{background:var(--blue);color:#fff;padding:12px 32px;font-size:15px;}
+  .btn-submit:hover{background:var(--navy);transform:translateY(-1px);box-shadow:var(--shadow-md);}
 
-  /* ── RADIO / CHECKBOX ── */
-  .options-list { display: flex; flex-direction: column; gap: 8px; }
-  .options-list.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .option-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    cursor: pointer;
-    padding: 10px 14px;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    background: white;
-    transition: all 0.12s;
-    font-size: 14px;
-    line-height: 1.4;
-    user-select: none;
-  }
-  .option-item:hover { border-color: var(--blue-mid); background: var(--blue-light); }
-  .option-item input[type="radio"], .option-item input[type="checkbox"] {
-    width: auto; flex-shrink: 0; margin-top: 2px; accent-color: var(--blue); cursor: pointer;
-  }
-  .option-item.selected { border-color: var(--blue); background: var(--blue-light); }
+  /* MAP */
+  .map-placeholder{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;margin-top:16px;}
+  .map-mock{height:280px;background:linear-gradient(180deg,#e8f0e8 0%,#d4e4d4 100%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .map-mock svg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.15;}
+  .map-mock-content{position:relative;text-align:center;}
+  .map-mock-content p{font-size:13px;color:var(--gray-600);margin-top:8px;}
+  .map-pin{font-size:24px;}
+  .map-layers{display:flex;gap:8px;padding:10px 14px;background:var(--gray-50);border-top:1px solid var(--gray-200);flex-wrap:wrap;}
+  .map-layer-badge{font-size:11px;padding:3px 8px;border-radius:12px;font-weight:500;}
+  .badge-oz{background:#dbeafe;color:#1e40af;}
+  .badge-nmtc{background:#dcfce7;color:#166534;}
+  .badge-zone{background:#fef9c3;color:#713f12;}
+  .badge-incentive{background:#fae8ff;color:#6b21a8;}
+  .map-caption{font-size:12px;color:var(--gray-600);font-style:italic;padding:8px 14px;background:var(--gray-50);border-top:1px solid var(--gray-200);}
 
-  /* ── TWO COL GRID ── */
-  .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .three-col-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  /* LINKS */
+  .link-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+  .link-row input{flex:1;}
+  .link-row .link-label{font-size:12px;color:var(--gray-600);width:56px;flex-shrink:0;}
 
-  /* ── CONDITIONAL REVEAL ── */
-  .conditional { display: none; }
-  .conditional.show { display: block; }
+  /* UPLOAD */
+  .upload-zone{border:2px dashed var(--gray-200);border-radius:var(--radius);padding:28px;text-align:center;background:var(--gray-50);cursor:pointer;transition:all .15s;}
+  .upload-zone:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+  .upload-zone p{font-size:14px;color:var(--gray-600);}
+  .upload-zone .small{font-size:12px;color:var(--gray-400);margin-top:4px;}
 
-  /* ── PATH TOGGLE ── */
-  .path-toggle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  .path-card {
-    border: 2px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.15s;
-    background: white;
-  }
-  .path-card:hover { border-color: var(--blue-mid); }
-  .path-card.selected { border-color: var(--blue); background: var(--blue-light); }
-  .path-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-  .path-card p { font-size: 13px; color: var(--gray-600); line-height: 1.4; }
-  .path-card .icon { font-size: 24px; margin-bottom: 10px; }
+  /* REVIEW */
+  .review-section{margin-bottom:28px;}
+  .review-section h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--gray-200);}
+  .review-row{display:flex;gap:16px;padding:8px 0;border-bottom:1px solid var(--gray-100);font-size:14px;}
+  .review-row .key{width:200px;flex-shrink:0;color:var(--gray-600);font-weight:500;}
+  .confirm-box{background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:20px 24px;margin-bottom:24px;font-size:14px;color:var(--green);line-height:1.6;}
 
-  /* ── NAV BUTTONS ── */
-  .form-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid var(--gray-200);
-  }
-  .btn {
-    padding: 10px 24px;
-    border-radius: var(--radius);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.15s;
-  }
-  .btn-primary {
-    background: var(--navy);
-    color: white;
-  }
-  .btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-  .btn-secondary {
-    background: white;
-    color: var(--navy);
-    border: 1px solid var(--gray-200);
-  }
-  .btn-secondary:hover { border-color: var(--navy); }
-  .btn-submit {
-    background: var(--blue);
-    color: white;
-    padding: 12px 32px;
-    font-size: 15px;
-  }
-  .btn-submit:hover { background: var(--navy); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-
-  /* ── UPLOAD ── */
-  .upload-zone {
-    border: 2px dashed var(--gray-200);
-    border-radius: var(--radius);
-    padding: 32px;
-    text-align: center;
-    background: var(--gray-50);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .upload-zone:hover { border-color: var(--blue-mid); background: var(--blue-light); }
-  .upload-icon { font-size: 32px; margin-bottom: 8px; }
-  .upload-zone p { font-size: 14px; color: var(--gray-600); }
-  .upload-zone .small { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
-
-  /* ── REVIEW PAGE ── */
-  .review-section { margin-bottom: 28px; }
-  .review-section h3 {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--blue);
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .review-row { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 14px; }
-  .review-row .key { width: 200px; flex-shrink: 0; color: var(--gray-600); font-weight: 500; }
-  .review-row .val { color: var(--gray-800); }
-
-  /* ── SUBMIT CONFIRMATION ── */
-  .confirm-box {
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 24px;
-    font-size: 14px;
-    color: var(--green);
-    line-height: 1.6;
-  }
-  .priority-note {
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    border-radius: 8px;
-    padding: 16px 20px;
-    font-size: 13px;
-    color: #78350f;
-    line-height: 1.5;
-  }
-  .priority-note strong { display: block; margin-bottom: 4px; }
-
-  /* ── FAQ LINK ── */
-  .faq-link { font-size: 13px; color: var(--blue); text-decoration: underline; cursor: pointer; margin-top: 8px; display: inline-block; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 700px) {
-    .hero { padding: 32px 20px; }
-    .form-layout { padding: 24px 20px 60px; }
-    .criteria-grid { grid-template-columns: 1fr; }
-    .two-col-grid { grid-template-columns: 1fr; }
-    .three-col-grid { grid-template-columns: 1fr; }
-    .path-toggle { grid-template-columns: 1fr; }
-    .stats-bar { flex-wrap: wrap; }
-    .stat-item { min-width: 50%; }
-    .oz1-band { padding: 16px 20px; }
-    .criteria-band { padding: 20px; }
+  @media(max-width:700px){
+    .hero,.criteria-band,.oz1-band{padding-left:20px;padding-right:20px;}
+    .form-layout{padding:24px 20px 60px;}
+    .criteria-grid,.two-col-grid,.three-col-grid,.path-toggle,.options-list.two-col{grid-template-columns:1fr;}
+    .stats-bar{flex-wrap:wrap;}
+    .stat-item{min-width:50%;}
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="seal">🍑</div>
-  <span>State of Georgia</span>
-  <span class="divider">|</span>
+  <span>State of Georgia</span><span class="divider">|</span>
   <span>Department of Community Affairs</span>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-tag">OZ 2.0 — Open for Nominations</div>
   <h1>Nominate a Georgia Census Tract as an Opportunity Zone</h1>
   <p>The State of Georgia is selecting census tracts for OZ 2.0 designation — an economic development initiative to attract private investment starting January 1, 2027.</p>
-  <p class="note">Complete one form per census tract. You may submit nominations for multiple tracts.</p>
+  <p class="note">You may submit nominations for multiple tracts. For each nomination, you'll be asked to explain why that tract deserves priority consideration.</p>
   <a class="faq-link">Frequently Asked Questions →</a>
 </div>
 
-<!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-num">942</span>
-    <span class="stat-label">Eligible Tracts in GA</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">236</span>
-    <span class="stat-label">Tracts to Be Nominated</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">Aug 15</span>
-    <span class="stat-label">Nomination Deadline, 2026</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">Sep 29</span>
-    <span class="stat-label">Selection Deadline, 2026</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">Jan 1, 2027</span>
-    <span class="stat-label">Investment Eligible Date</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">942</span><span class="stat-label">Eligible Tracts in GA</span></div>
+  <div class="stat-item"><span class="stat-num">236</span><span class="stat-label">Tracts to Be Nominated</span></div>
+  <div class="stat-item"><span class="stat-num">Aug 15</span><span class="stat-label">Nomination Deadline, 2026</span></div>
+  <div class="stat-item"><span class="stat-num">Sep 29</span><span class="stat-label">Federal Deadline, 2026</span></div>
+  <div class="stat-item"><span class="stat-num">Jan 1, 2027</span><span class="stat-label">Investment Eligible Date</span></div>
 </div>
 
-<!-- CRITERIA -->
 <div class="criteria-band">
   <h2>What makes a strong nomination?</h2>
   <div class="criteria-grid">
@@ -556,17 +204,12 @@
   </div>
 </div>
 
-<!-- OZ 1.0 CONTEXT -->
 <div class="oz1-band">
-  <div class="oz1-icon">📊</div>
-  <div>
-    <h3>OZ 1.0 in Georgia: Background</h3>
-    <p>Georgia was one of 50 states to designate Opportunity Zones under the original 2017 program, with 260 census tracts designated statewide. Nationally, OZ 1.0 catalyzed an estimated $100 billion in private investment — spurring over 300,000 housing units and economic activity that spilled into neighboring non-designated areas.</p>
-    <p class="oz1-placeholder">[ Georgia-specific investment highlights and project examples to be added — pending DCA data ]</p>
-  </div>
+  <h3>OZ 1.0 in Georgia: Background</h3>
+  <p>Georgia was one of 50 states to designate Opportunity Zones under the original 2017 program, with 260 census tracts designated statewide. Nationally, OZ 1.0 catalyzed an estimated $100 billion in private investment — spurring over 300,000 housing units and economic activity that spilled into neighboring non-designated areas.</p>
+  <p class="oz1-placeholder">[ Georgia-specific investment highlights and project examples to be added — pending DCA data ]</p>
 </div>
 
-<!-- PROGRESS NAV -->
 <nav class="progress-nav">
   <div class="progress-steps">
     <div class="step-tab active" onclick="goTo(0)"><span class="check">✓</span>A. Contact</div>
@@ -579,150 +222,147 @@
   </div>
 </nav>
 
-<!-- FORM -->
 <div class="form-layout">
 
-  <!-- ── SECTION A ── -->
+  <!-- A: CONTACT -->
   <div class="form-section active" id="section-0">
     <div class="section-header">
       <div class="letter">Section A</div>
       <h2>Contact & Organization Information</h2>
       <p>Who is submitting this nomination and on whose behalf?</p>
     </div>
-
     <div class="field-group">
       <label class="field-label">Are you nominating on behalf of yourself or an organization? <span class="req">*</span></label>
       <div class="options-list">
-        <label class="option-item" onclick="toggleNomType(this, 'individual')">
-          <input type="radio" name="nom_type" value="individual"> Individual — nominating on my own behalf
-        </label>
-        <label class="option-item" onclick="toggleNomType(this, 'org')">
-          <input type="radio" name="nom_type" value="org"> On behalf of an organization
-        </label>
+        <label class="option-item" onclick="toggleNomType(this,'individual')"><input type="radio" name="nom_type"> Individual — nominating on my own behalf</label>
+        <label class="option-item" onclick="toggleNomType(this,'org')"><input type="radio" name="nom_type"> On behalf of an organization</label>
       </div>
     </div>
-
     <div class="conditional" id="org-fields">
       <div class="two-col-grid">
-        <div class="field-group" style="margin-bottom:0">
+        <div class="field-group no-sep" style="margin-bottom:0">
           <label class="field-label">Organization Name <span class="opt">(optional)</span></label>
           <input type="text" placeholder="e.g., City of Macon Dept. of Economic Development">
         </div>
-        <div class="field-group" style="margin-bottom:0">
+        <div class="field-group no-sep" style="margin-bottom:0">
           <label class="field-label">Type of Organization <span class="opt">(optional)</span></label>
-          <select>
-            <option value="">Select type...</option>
-            <option>Municipal Government</option>
-            <option>County Government</option>
-            <option>Elected Official's Office</option>
-            <option>Developer</option>
-            <option>Business</option>
-            <option>Nonprofit Organization</option>
-            <option>Regional Planning Commission</option>
-            <option>Economic Development Organization</option>
-            <option>Other</option>
-          </select>
+          <select><option value="">Select type...</option><option>Municipal Government</option><option>County Government</option><option>Elected Official's Office</option><option>Developer</option><option>Business</option><option>Nonprofit Organization</option><option>Regional Planning Commission</option><option>Economic Development Organization</option><option>Other</option></select>
         </div>
       </div>
     </div>
-
-    <div class="two-col-grid" style="margin-top: 20px;">
-      <div class="field-group" style="margin-bottom:0">
+    <div class="two-col-grid" style="margin-top:20px">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Contact Name <span class="req">*</span></label>
         <input type="text" placeholder="First Last">
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Title / Role <span class="opt">(optional)</span></label>
         <input type="text" placeholder="e.g., Director of Planning">
       </div>
     </div>
-
-    <div class="field-group" style="margin-top: 20px;">
+    <div class="field-group" style="margin-top:20px">
       <label class="field-label">Email Address <span class="req">*</span></label>
       <input type="email" placeholder="you@organization.gov">
-      <div class="field-hint" style="margin-top: 6px; margin-bottom: 0;">A confirmation copy of your submission will be sent here.</div>
+      <div class="field-hint" style="margin-top:6px;margin-bottom:0">A confirmation copy will be sent here.</div>
     </div>
-
-    <div class="form-nav">
-      <span></span>
-      <button class="btn btn-primary" onclick="goTo(1)">Next: Census Tract →</button>
-    </div>
+    <div class="form-nav"><span></span><button class="btn btn-primary" onclick="goTo(1)">Next: Census Tract →</button></div>
   </div>
 
-  <!-- ── SECTION B ── -->
+  <!-- B: CENSUS TRACT -->
   <div class="form-section" id="section-1">
     <div class="section-header">
       <div class="letter">Section B</div>
       <h2>Census Tract Nomination</h2>
       <p>Identify the specific eligible tract you are nominating.</p>
     </div>
-
     <div class="three-col-grid">
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">County <span class="req">*</span></label>
-        <select>
-          <option value="">Select county...</option>
-          <option>Bibb County</option>
-          <option>Chatham County</option>
-          <option>Clarke County</option>
-          <option>DeKalb County</option>
-          <option>Dougherty County</option>
-          <option>Floyd County</option>
-          <option>Fulton County</option>
-          <option>Muscogee County</option>
-          <option>Richmond County</option>
-          <option>Tift County</option>
-        </select>
+        <select><option value="">Select county...</option><option>Bibb County</option><option>Chatham County</option><option>Clarke County</option><option>DeKalb County</option><option>Dougherty County</option><option>Floyd County</option><option>Fulton County</option><option>Muscogee County</option><option>Richmond County</option><option>Tift County</option></select>
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Municipality <span class="opt">(optional)</span></label>
-        <select>
-          <option value="">Select municipality...</option>
-          <option>Albany</option>
-          <option>Athens</option>
-          <option>Atlanta</option>
-          <option>Augusta</option>
-          <option>Columbus</option>
-          <option>Macon</option>
-          <option>Rome</option>
-          <option>Savannah</option>
-          <option>Tifton</option>
-        </select>
+        <select><option value="">Select municipality...</option><option>Albany</option><option>Athens</option><option>Atlanta</option><option>Augusta</option><option>Columbus</option><option>Macon</option><option>Rome</option><option>Savannah</option><option>Tifton</option></select>
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Census Tract (GEOID) <span class="req">*</span></label>
-        <select>
-          <option value="">Select tract...</option>
-          <option>13021040100</option>
-          <option>13051000100</option>
-          <option>13059001001</option>
-          <option>13067000100</option>
-          <option>13095010100</option>
-          <option>13245001400</option>
-        </select>
-        <div class="field-hint" style="margin-top:6px; margin-bottom:0">Can't find your tract? <a style="color:var(--blue);cursor:pointer;">Search by address →</a></div>
+        <select><option value="">Select tract...</option><option>13021040100</option><option>13051000100</option><option>13059001001</option><option>13067000100</option><option>13095010100</option><option>13245001400</option></select>
+        <div class="field-hint" style="margin-top:6px;margin-bottom:0">Can't find your tract? <a style="color:var(--blue);cursor:pointer">Search by address →</a></div>
       </div>
     </div>
-
-    <div class="field-group" style="margin-top: 24px;">
+    <div class="field-group" style="margin-top:24px">
       <label class="field-label">Does this nomination span adjacent eligible tracts? <span class="opt">(optional)</span></label>
       <div class="options-list">
         <label class="option-item"><input type="radio" name="adjacent"> No — this tract only</label>
-        <label class="option-item" onclick="document.getElementById('adjacent-fields').classList.toggle('show')">
-          <input type="radio" name="adjacent"> Yes — note additional GEOIDs below
-        </label>
+        <label class="option-item" onclick="document.getElementById('adj').classList.toggle('show')"><input type="radio" name="adjacent"> Yes — note additional GEOIDs below</label>
       </div>
     </div>
-    <div class="conditional" id="adjacent-fields">
-      <div class="field-group">
+    <div class="conditional" id="adj">
+      <div class="field-group no-sep">
         <label class="field-label">Adjacent Tract GEOIDs <span class="opt">(optional)</span></label>
-        <div class="field-hint">A separate nomination form is required for each tract. Listing here is for context only.</div>
+        <div class="field-hint">A separate form is required for each tract. Listing here is for context only.</div>
         <input type="text" placeholder="e.g., 13021040200, 13021040300">
       </div>
     </div>
 
-    <div style="margin-top: 20px; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; text-align: center; color: var(--gray-400); font-size: 13px;">
-      🗺️ Interactive map of all eligible tracts — to be embedded here
+    <!-- SAMPLE MAP -->
+    <div class="map-placeholder">
+      <div class="map-mock">
+        <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- stylized GA county grid suggestion -->
+          <rect x="0" y="0" width="860" height="280" fill="#c8dfc8"/>
+          <!-- simple grid of tract-like rectangles -->
+          <g fill="#a8c8a8" stroke="#fff" stroke-width="1">
+            <rect x="20" y="20" width="60" height="40"/><rect x="85" y="20" width="60" height="40"/><rect x="150" y="20" width="60" height="40"/><rect x="215" y="20" width="60" height="40"/>
+            <rect x="280" y="20" width="60" height="40"/><rect x="345" y="20" width="60" height="40"/><rect x="410" y="20" width="60" height="40"/><rect x="475" y="20" width="60" height="40"/>
+            <rect x="540" y="20" width="60" height="40"/><rect x="605" y="20" width="60" height="40"/><rect x="670" y="20" width="60" height="40"/><rect x="735" y="20" width="80" height="40"/>
+            <rect x="20" y="65" width="60" height="40"/><rect x="85" y="65" width="60" height="40"/><rect x="150" y="65" width="60" height="40"/><rect x="215" y="65" width="60" height="40"/>
+            <rect x="280" y="65" width="60" height="40"/><rect x="345" y="65" width="60" height="40"/><rect x="410" y="65" width="60" height="40"/><rect x="475" y="65" width="60" height="40"/>
+            <rect x="540" y="65" width="60" height="40"/><rect x="605" y="65" width="60" height="40"/><rect x="670" y="65" width="60" height="40"/><rect x="735" y="65" width="80" height="40"/>
+            <rect x="20" y="110" width="60" height="40"/><rect x="85" y="110" width="60" height="40"/><rect x="150" y="110" width="60" height="40"/><rect x="215" y="110" width="60" height="40"/>
+            <rect x="280" y="110" width="60" height="40"/><rect x="345" y="110" width="60" height="40"/><rect x="410" y="110" width="60" height="40"/><rect x="475" y="110" width="60" height="40"/>
+            <rect x="540" y="110" width="60" height="40"/><rect x="605" y="110" width="60" height="40"/><rect x="670" y="110" width="60" height="40"/><rect x="735" y="110" width="80" height="40"/>
+            <rect x="20" y="155" width="60" height="40"/><rect x="85" y="155" width="60" height="40"/><rect x="150" y="155" width="60" height="40"/><rect x="215" y="155" width="60" height="40"/>
+            <rect x="280" y="155" width="60" height="40"/><rect x="345" y="155" width="60" height="40"/><rect x="410" y="155" width="60" height="40"/><rect x="475" y="155" width="60" height="40"/>
+            <rect x="540" y="155" width="60" height="40"/><rect x="605" y="155" width="60" height="40"/><rect x="670" y="155" width="60" height="40"/><rect x="735" y="155" width="80" height="40"/>
+            <rect x="20" y="200" width="60" height="60"/><rect x="85" y="200" width="60" height="60"/><rect x="150" y="200" width="60" height="60"/><rect x="215" y="200" width="60" height="60"/>
+            <rect x="280" y="200" width="60" height="60"/><rect x="345" y="200" width="60" height="60"/><rect x="410" y="200" width="60" height="60"/><rect x="475" y="200" width="60" height="60"/>
+            <rect x="540" y="200" width="60" height="60"/><rect x="605" y="200" width="60" height="60"/><rect x="670" y="200" width="60" height="60"/><rect x="735" y="200" width="80" height="60"/>
+          </g>
+          <!-- highlighted OZ-eligible tracts -->
+          <g fill="#2563a8" opacity="0.5">
+            <rect x="150" y="65" width="60" height="40"/><rect x="215" y="65" width="60" height="40"/>
+            <rect x="280" y="110" width="60" height="40"/><rect x="345" y="110" width="60" height="40"/><rect x="410" y="110" width="60" height="40"/>
+            <rect x="345" y="155" width="60" height="40"/><rect x="410" y="155" width="60" height="40"/><rect x="475" y="155" width="60" height="40"/>
+            <rect x="540" y="65" width="60" height="40"/><rect x="605" y="65" width="60" height="40"/>
+            <rect x="670" y="110" width="60" height="40"/><rect x="735" y="110" width="80" height="40"/>
+            <rect x="85" y="200" width="60" height="60"/><rect x="150" y="200" width="60" height="60"/>
+            <rect x="475" y="200" width="60" height="60"/><rect x="540" y="200" width="60" height="60"/>
+          </g>
+          <!-- NMTC overlay -->
+          <g fill="#166534" opacity="0.25">
+            <rect x="280" y="65" width="60" height="40"/><rect x="345" y="65" width="60" height="40"/>
+            <rect x="150" y="110" width="60" height="40"/><rect x="215" y="110" width="60" height="40"/>
+            <rect x="605" y="155" width="60" height="40"/><rect x="670" y="155" width="60" height="40"/>
+          </g>
+          <!-- selected tract highlight -->
+          <rect x="345" y="110" width="60" height="40" fill="none" stroke="#f59e0b" stroke-width="3"/>
+          <!-- pin -->
+          <circle cx="375" cy="130" r="6" fill="#dc2626"/>
+          <circle cx="375" cy="130" r="3" fill="#fff"/>
+        </svg>
+        <div class="map-mock-content">
+          <p style="background:rgba(255,255,255,0.85);padding:8px 16px;border-radius:4px;font-weight:500;color:var(--navy)">Interactive map — eligible tracts with layer overlays</p>
+        </div>
+      </div>
+      <div class="map-layers">
+        <span style="font-size:11px;color:var(--gray-600);font-weight:600;margin-right:4px;">LAYERS:</span>
+        <span class="map-layer-badge badge-oz">OZ-Eligible Tracts</span>
+        <span class="map-layer-badge badge-nmtc">NMTC Eligible Areas</span>
+        <span class="map-layer-badge badge-zone">Zoning Districts</span>
+        <span class="map-layer-badge badge-incentive">State Incentive Programs</span>
+      </div>
+      <div class="map-caption">Sample map — interactive version with all 942 eligible Georgia tracts, NMTC overlays, zoning, and state incentive layers will be embedded here. Registered users can drop a project pin within eligible tracts.</div>
     </div>
 
     <div class="form-nav">
@@ -731,14 +371,13 @@
     </div>
   </div>
 
-  <!-- ── SECTION C ── -->
+  <!-- C: COMMUNITY NEED -->
   <div class="form-section" id="section-2">
     <div class="section-header">
       <div class="letter">Section C</div>
       <h2>Community Need & Local Context</h2>
       <p>Help us understand why this tract deserves priority.</p>
     </div>
-
     <div class="field-group">
       <label class="field-label">Key challenges facing this tract <span class="req">*</span></label>
       <div class="field-hint">Select all that apply</div>
@@ -755,19 +394,16 @@
         <label class="option-item"><input type="checkbox"> Workforce access and job creation need</label>
       </div>
     </div>
-
     <div class="field-group">
       <label class="field-label">What does the community want to see happen here? <span class="req">*</span></label>
       <div class="field-hint">Describe local plans, community goals, or resident priorities. Is this area included in a comprehensive plan, redevelopment plan, or other regional strategy?</div>
       <textarea placeholder="Describe community goals and local planning context..."></textarea>
     </div>
-
     <div class="field-group">
       <label class="field-label">Existing momentum <span class="opt">(optional)</span></label>
-      <div class="field-hint">Describe any existing investment, planning efforts, or redevelopment activity already underway in or near this tract. Has DCA or the state provided prior funding here?</div>
+      <div class="field-hint">Any existing investment, planning efforts, or redevelopment activity already underway? Has DCA or the state provided prior funding here?</div>
       <textarea placeholder="Describe existing investments or planning activity..."></textarea>
     </div>
-
     <div class="field-group">
       <label class="field-label">Alignment with Georgia's economic development priorities <span class="req">*</span></label>
       <div class="field-hint">Select all that apply</div>
@@ -782,99 +418,141 @@
         <label class="option-item"><input type="checkbox"> Support for state-identified target industries</label>
       </div>
     </div>
-
     <div class="form-nav">
       <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
       <button class="btn btn-primary" onclick="goTo(3)">Next: Investment Potential →</button>
     </div>
   </div>
 
-  <!-- ── SECTION D ── -->
+  <!-- D: INVESTMENT -->
   <div class="form-section" id="section-3">
     <div class="section-header">
       <div class="letter">Section D</div>
       <h2>Investment Potential</h2>
     </div>
 
-    <div class="info-box green">
-      <h4>No specific project yet? That's okay.</h4>
-      <p>If you are nominating a tract because of its investment potential — not a specific project — answer based on what you know about the tract's characteristics. Skip questions marked <em>(if project identified)</em> if they don't apply.</p>
-      <p>If you have a specific project in mind, complete all fields. <strong>Strong nominations with project-level detail will be weighted more heavily in selection.</strong></p>
-    </div>
-
+    <!-- FORK — no icons -->
     <div class="field-group">
-      <label class="field-label">Which best describes your nomination?  <span class="req">*</span></label>
+      <label class="field-label">Which best describes your nomination? <span class="req">*</span></label>
+      <div class="field-hint">Your answer shapes the questions below.</div>
       <div class="path-toggle">
         <div class="path-card" id="path-tract" onclick="selectPath('tract')">
-          <div class="icon">🗺️</div>
-          <h3>Tract has investment potential</h3>
-          <p>I'm nominating based on this tract's characteristics and opportunity — no specific project identified yet.</p>
+          <h3>This tract has investment potential</h3>
+          <p>I'm nominating based on this tract's economic development opportunity. No specific project identified yet — but I can describe the types of investment it could support and why it's an attractive location.</p>
         </div>
         <div class="path-card" id="path-project" onclick="selectPath('project')">
-          <div class="icon">🏗️</div>
           <h3>I have a specific project in mind</h3>
-          <p>There is a defined project or development I believe OZ designation would enable.</p>
+          <p>There is a defined project, business expansion, or development that OZ designation would enable. I can provide project-level detail.</p>
         </div>
       </div>
     </div>
 
-    <div class="field-group">
-      <label class="field-label">Project Name <span class="opt">(optional)</span></label>
-      <input type="text" placeholder="e.g., 4th Street Mixed-Use Redevelopment">
-    </div>
-
-    <div class="field-group">
-      <label class="field-label">Type of Project or Development <span class="req">*</span></label>
-      <div class="options-list two-col">
-        <label class="option-item"><input type="radio" name="proj_type"> Adaptive Reuse</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Business Formation / Entrepreneurship</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Commercial / Mixed Use / Main Street</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Community Facilities / Services</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Housing — Market-Rate</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Housing — Affordable / Workforce</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Industrial / Logistics / Manufacturing</label>
-        <label class="option-item"><input type="radio" name="proj_type"> Infrastructure</label>
-        <label class="option-item" style="grid-column: 1/-1"><input type="radio" name="proj_type"> Not yet determined — tract has potential across multiple uses</label>
+    <!-- TRACT PATH -->
+    <div class="conditional" id="tract-fields">
+      <div class="field-group no-sep">
+        <label class="field-label">What types of investment could this tract support? <span class="req">*</span></label>
+        <div class="field-hint">Select all that apply — think about market, infrastructure, and community context.</div>
+        <div class="options-list two-col">
+          <label class="option-item"><input type="checkbox"> Market-rate housing</label>
+          <label class="option-item"><input type="checkbox"> Affordable / workforce housing</label>
+          <label class="option-item"><input type="checkbox"> Mixed-use / commercial</label>
+          <label class="option-item"><input type="checkbox"> Industrial / logistics / manufacturing</label>
+          <label class="option-item"><input type="checkbox"> Business formation or startup</label>
+          <label class="option-item"><input type="checkbox"> Business expansion or retention</label>
+          <label class="option-item"><input type="checkbox"> Community facilities / services</label>
+          <label class="option-item"><input type="checkbox"> Infrastructure</label>
+          <label class="option-item"><input type="checkbox"> Adaptive reuse / brownfield redevelopment</label>
+          <label class="option-item"><input type="checkbox"> Other</label>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Why is this tract an attractive investment location? <span class="req">*</span></label>
+        <div class="field-hint">Describe market fundamentals, infrastructure assets, proximity to anchors, or development conditions that make this tract investable.</div>
+        <textarea placeholder="e.g., Adjacent to the port expansion corridor, underutilized industrial land, existing rail access..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Any known development interest or market signals? <span class="opt">(optional)</span></label>
+        <div class="field-hint">Has a developer, business, or QOF expressed interest — even informally?</div>
+        <textarea placeholder="Describe any known interest or early-stage activity..."></textarea>
       </div>
     </div>
 
-    <div class="field-group">
-      <label class="field-label">Project or tract description <span class="req">*</span></label>
-      <div class="field-hint" id="desc-hint-tract">Describe what types of investment this tract could support and why it is an attractive location.</div>
-      <div class="field-hint" id="desc-hint-project" style="display:none">What will be built or developed? Who is the developer or sponsor? What is the intended use, scale, and who will it serve?</div>
-      <textarea placeholder="Describe the project or investment potential of this tract..."></textarea>
-    </div>
-
-    <div class="field-group">
-      <label class="field-label">Alignment with state target industries or economic development priorities <span class="opt">(optional)</span></label>
-      <div class="field-hint">Does this tract or project support state-identified sectors such as advanced manufacturing, life sciences, agribusiness, logistics, or tourism?</div>
-      <textarea placeholder="Describe alignment with Georgia's economic development agenda..."></textarea>
-    </div>
-
-    <div class="field-group">
-      <label class="field-label">Why is OZ equity a good fit here? <span class="req">*</span></label>
-      <div class="field-hint">Does OZ designation close a financing gap? Accelerate timing? Attract capital that wouldn't otherwise come to this location?</div>
-      <textarea placeholder="Explain why OZ capital is the right tool for this tract or project..."></textarea>
-    </div>
-
-    <!-- Project-only fields -->
-    <div class="conditional" id="project-only-fields">
+    <!-- PROJECT PATH -->
+    <div class="conditional" id="project-fields">
+      <div class="field-group no-sep">
+        <label class="field-label">Project Name <span class="opt">(optional)</span></label>
+        <input type="text" placeholder="e.g., 4th Street Mixed-Use Redevelopment">
+      </div>
       <div class="field-group">
-        <label class="field-label">IRS eligibility — 30-month requirement <span class="opt">(if project identified)</span></label>
+        <label class="field-label">Type of project <span class="req">*</span></label>
+        <div class="field-hint">Select all that apply</div>
+        <div class="options-list two-col">
+          <label class="option-item"><input type="checkbox"> Market-rate multifamily housing</label>
+          <label class="option-item"><input type="checkbox"> Mixed-use real estate (residential over retail/office)</label>
+          <label class="option-item"><input type="checkbox"> Affordable / workforce housing (non-LIHTC)</label>
+          <label class="option-item"><input type="checkbox"> Industrial, logistics, or warehouse</label>
+          <label class="option-item"><input type="checkbox"> Data center / digital infrastructure</label>
+          <label class="option-item"><input type="checkbox"> Office / creative office / flex space</label>
+          <label class="option-item"><input type="checkbox"> Retail / neighborhood commercial</label>
+          <label class="option-item"><input type="checkbox"> Hospitality</label>
+          <label class="option-item"><input type="checkbox"> Business formation or startup</label>
+          <label class="option-item"><input type="checkbox"> Business expansion or relocation</label>
+          <label class="option-item"><input type="checkbox"> Operating business within an OZ</label>
+          <label class="option-item"><input type="checkbox"> Renewable energy / clean infrastructure</label>
+          <label class="option-item"><input type="checkbox"> Adaptive reuse of existing building</label>
+          <label class="option-item"><input type="checkbox"> Brownfield / contaminated site redevelopment</label>
+          <label class="option-item"><input type="checkbox"> Greenfield development</label>
+          <label class="option-item"><input type="checkbox"> Community facility / services</label>
+          <label class="option-item"><input type="checkbox"> Infrastructure</label>
+          <label class="option-item"><input type="checkbox"> Large-scale master-planned development</label>
+          <label class="option-item" style="grid-column:1/-1"><input type="checkbox"> Other</label>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Site conditions <span class="opt">(optional)</span></label>
+        <div class="field-hint">Select all that apply</div>
+        <div class="options-list two-col">
+          <label class="option-item"><input type="checkbox"> Greenfield (undeveloped land)</label>
+          <label class="option-item"><input type="checkbox"> Brownfield / contaminated site</label>
+          <label class="option-item"><input type="checkbox"> Vacant or underutilized building</label>
+          <label class="option-item"><input type="checkbox"> Blighted anchor property</label>
+          <label class="option-item"><input type="checkbox"> Historic structure</label>
+          <label class="option-item"><input type="checkbox"> Publicly-owned land or building</label>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Project description <span class="req">*</span></label>
+        <div class="field-hint">What will be built or developed? Who is the developer or sponsor? What is the scale, intended use, and who will it serve?</div>
+        <textarea placeholder="Describe the project..."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">IRS eligibility — 30-month requirement <span class="opt">(optional)</span></label>
         <div class="field-hint">Can this project meet the "substantial improvement" or "original use" requirement?</div>
         <div class="options-list">
           <label class="option-item"><input type="radio" name="irs"> Yes — original use (new construction or first use in the OZ)</label>
           <label class="option-item"><input type="radio" name="irs"> Yes — substantial improvement (doubling the basis within 30 months)</label>
           <label class="option-item"><input type="radio" name="irs"> Uncertain — needs further analysis</label>
           <label class="option-item"><input type="radio" name="irs"> No / Not applicable</label>
-          <label class="option-item"><input type="radio" name="irs"> Not yet known — no specific project identified</label>
         </div>
       </div>
     </div>
 
+    <!-- SHARED FIELDS -->
+    <div class="field-group">
+      <label class="field-label">Alignment with state target industries or priorities <span class="opt">(optional)</span></label>
+      <div class="field-hint">Does this tract or project support sectors such as advanced manufacturing, life sciences, agribusiness, logistics, or tourism?</div>
+      <textarea placeholder="Describe alignment with Georgia's economic development agenda..."></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Why is OZ equity a good fit here? <span class="req">*</span></label>
+      <div class="field-hint">Does OZ designation close a financing gap? Accelerate timing? Attract capital that wouldn't otherwise come here? <strong>Strong nominations with project-level detail may be weighted more heavily in selection.</strong></div>
+      <textarea placeholder="Explain why OZ capital is the right tool..."></textarea>
+    </div>
+
     <div class="subsection-title">Project Readiness</div>
     <div class="field-group">
-      <label class="field-label">Project Readiness <span class="req">*</span></label>
+      <label class="field-label">Readiness level <span class="req">*</span></label>
       <div class="options-list">
         <label class="option-item"><input type="radio" name="readiness"> No project identified — nominating based on tract investment potential</label>
         <label class="option-item"><input type="radio" name="readiness"> Exploratory — concept only</label>
@@ -886,28 +564,16 @@
 
     <div class="subsection-title">Location & Infrastructure</div>
     <div class="two-col-grid">
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Utility access <span class="opt">(optional)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>Yes — all utilities available to the curb</option>
-          <option>Partial — some improvements needed</option>
-          <option>No — significant investment required</option>
-          <option>Unknown</option>
-        </select>
+        <select><option value="">Select...</option><option>Yes — all utilities available to the curb</option><option>Partial — some improvements needed</option><option>No — significant investment required</option><option>Unknown</option></select>
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Zoning status <span class="opt">(optional)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>Already zoned for intended use</option>
-          <option>Rezoning would be required</option>
-          <option>Partial / conditional</option>
-          <option>Unknown</option>
-        </select>
+        <select><option value="">Select...</option><option>Already zoned for intended use</option><option>Rezoning would be required</option><option>Partial / conditional</option><option>Unknown</option></select>
       </div>
     </div>
-    <div class="field-group" style="margin-top: 20px;">
+    <div class="field-group" style="margin-top:20px">
       <label class="field-label">Proximity to major transportation infrastructure <span class="opt">(optional)</span></label>
       <div class="options-list">
         <label class="option-item"><input type="radio" name="transit"> Adjacent / within 0.5 miles of interstate interchange, rail spur, or transit hub</label>
@@ -919,32 +585,16 @@
 
     <div class="subsection-title">Site Control & Financing</div>
     <div class="two-col-grid">
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Site Control <span class="opt">(if project identified)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>No site control yet</option>
-          <option>Letter of intent</option>
-          <option>Option to purchase</option>
-          <option>Purchase agreement executed</option>
-          <option>Site owned by developer / sponsor</option>
-          <option>Publicly-owned (local government)</option>
-          <option>Not applicable — no specific project</option>
-        </select>
+        <select><option value="">Select...</option><option>No site control yet</option><option>Letter of intent</option><option>Option to purchase</option><option>Purchase agreement executed</option><option>Site owned by developer / sponsor</option><option>Publicly-owned (local government)</option><option>Not applicable</option></select>
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Status of capital sources <span class="opt">(if project identified)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>Debt underwritten / committed</option>
-          <option>Equity circled and committed</option>
-          <option>Capital identified but not yet committed</option>
-          <option>General indication of capital type needed</option>
-          <option>Not applicable — no specific project</option>
-        </select>
+        <select><option value="">Select...</option><option>Debt underwritten / committed</option><option>Equity circled and committed</option><option>Capital identified but not yet committed</option><option>General indication of capital type needed</option><option>Not applicable — no specific project</option></select>
       </div>
     </div>
-    <div class="field-group" style="margin-top: 20px;">
+    <div class="field-group" style="margin-top:20px">
       <label class="field-label">Capital sources identified <span class="opt">(optional)</span></label>
       <div class="field-hint">Select all that apply</div>
       <div class="options-list two-col">
@@ -957,29 +607,37 @@
         <label class="option-item"><input type="checkbox"> Not yet identified</label>
       </div>
     </div>
-    <div class="two-col-grid">
-      <div class="field-group" style="margin-bottom:0">
-        <label class="field-label">In discussion with a Qualified Opportunity Fund (QOF)? <span class="opt">(optional)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>Yes</option>
-          <option>Exploring</option>
-          <option>No / Not applicable</option>
-        </select>
+
+    <!-- QOF with conditional textarea -->
+    <div class="field-group">
+      <label class="field-label">In discussion with a Qualified Opportunity Fund (QOF)? <span class="opt">(optional)</span></label>
+      <div class="options-list">
+        <label class="option-item" onclick="showBox('qof-box',true)"><input type="radio" name="qof"> Yes</label>
+        <label class="option-item" onclick="showBox('qof-box',true)"><input type="radio" name="qof"> Exploring</label>
+        <label class="option-item" onclick="showBox('qof-box',false)"><input type="radio" name="qof"> No / Not applicable</label>
       </div>
-      <div class="field-group" style="margin-bottom:0">
-        <label class="field-label">OZ investors identified? <span class="opt">(optional)</span></label>
-        <select>
-          <option value="">Select...</option>
-          <option>Yes</option>
-          <option>In discussion</option>
-          <option>No / Not applicable</option>
-        </select>
+      <div class="conditional" id="qof-box" style="margin-top:8px">
+        <textarea placeholder="Fund name, geographic focus, stage of conversation..."></textarea>
       </div>
     </div>
-    <div class="field-group" style="margin-top: 20px;">
-      <label class="field-label">Other Georgia state incentives anticipated <span class="opt">(optional)</span></label>
-      <input type="text" placeholder="List any DCA or state programs this project intends to apply for or has been awarded...">
+
+    <!-- Investors with conditional textarea -->
+    <div class="field-group">
+      <label class="field-label">OZ investors identified? <span class="opt">(optional)</span></label>
+      <div class="options-list">
+        <label class="option-item" onclick="showBox('investor-box',true)"><input type="radio" name="investor"> Yes</label>
+        <label class="option-item" onclick="showBox('investor-box',true)"><input type="radio" name="investor"> In discussion</label>
+        <label class="option-item" onclick="showBox('investor-box',false)"><input type="radio" name="investor"> No / Not applicable</label>
+      </div>
+      <div class="conditional" id="investor-box" style="margin-top:8px">
+        <textarea placeholder="Type of investor, approximate capital size, stage of conversation..."></textarea>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Other state funding needed or anticipated <span class="opt">(optional)</span></label>
+      <div class="field-hint">List any DCA or state programs applied for, awarded, or intended — or indicate OZ equity alone is sufficient.</div>
+      <textarea placeholder="e.g., Applied for DCA community development grant / No additional state funding anticipated..."></textarea>
     </div>
 
     <div class="subsection-title">Expected Community Benefits</div>
@@ -988,19 +646,21 @@
       <div class="field-hint">Select all that apply</div>
       <div class="options-list two-col">
         <label class="option-item"><input type="checkbox"> Business formation</label>
+        <label class="option-item"><input type="checkbox"> Business expansion / retention</label>
         <label class="option-item"><input type="checkbox"> Community services</label>
         <label class="option-item"><input type="checkbox"> Housing access</label>
         <label class="option-item"><input type="checkbox"> Infrastructure investment</label>
         <label class="option-item"><input type="checkbox"> Job creation</label>
         <label class="option-item"><input type="checkbox"> Tax base growth</label>
+        <label class="option-item"><input type="checkbox"> Workforce development</label>
       </div>
     </div>
     <div class="two-col-grid">
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Estimated jobs created <span class="opt">(optional)</span></label>
         <input type="text" placeholder="Construction: __ / Permanent FTE: __">
       </div>
-      <div class="field-group" style="margin-bottom:0">
+      <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Estimated housing units <span class="opt">(optional)</span></label>
         <input type="text" placeholder="Total units / % at 60–80% AMI">
       </div>
@@ -1012,73 +672,66 @@
     </div>
   </div>
 
-  <!-- ── SECTION E ── -->
+  <!-- E: DOCUMENTS -->
   <div class="form-section" id="section-4">
     <div class="section-header">
       <div class="letter">Section E</div>
-      <h2>Supporting Documents</h2>
+      <h2>Supporting Documents & Links</h2>
     </div>
-
     <div class="info-box blue">
       <h4>What to upload</h4>
-      <p>Documents that demonstrate project readiness (site plans, letters of intent, purchase agreements, zoning approvals, capital commitment letters) or local planning priorities (comprehensive plans, redevelopment plans, feasibility studies). Excerpts are preferred over full documents.</p>
+      <p>Upload a project prospectus or overview document — a concise summary of the project, investment opportunity, and community impact. One-pagers and excerpts are preferred over full plans. Max 1 file, up to 10 MB.</p>
     </div>
-
     <div class="upload-zone">
-      <div class="upload-icon">📎</div>
-      <p>Drag files here, or click to browse</p>
-      <p class="small">PDF, Word, Excel, PowerPoint, JPG, PNG · Max 3 files · 10 MB per file · 25 MB total</p>
+      <p>Drag file here, or click to browse</p>
+      <p class="small">PDF or Word · Max 1 file · 10 MB · Project prospectus or overview preferred</p>
     </div>
-
+    <div class="field-group" style="margin-top:28px">
+      <label class="field-label">Relevant links <span class="opt">(optional — up to 3)</span></label>
+      <div class="field-hint">Link to a local plan, redevelopment study, zoning map, developer site, or other relevant resource.</div>
+      <div class="link-row"><span class="link-label">Link 1</span><input type="url" placeholder="https://..."></div>
+      <div class="link-row"><span class="link-label">Link 2</span><input type="url" placeholder="https://..."></div>
+      <div class="link-row"><span class="link-label">Link 3</span><input type="url" placeholder="https://..."></div>
+    </div>
     <div class="form-nav">
       <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
       <button class="btn btn-primary" onclick="goTo(5)">Next: Feedback →</button>
     </div>
   </div>
 
-  <!-- ── SECTION F ── -->
+  <!-- F: FEEDBACK -->
   <div class="form-section" id="section-5">
     <div class="section-header">
       <div class="letter">Section F</div>
       <h2>Program Feedback</h2>
       <p>Optional — help us improve the program.</p>
     </div>
-
     <div class="field-group">
-      <label class="field-label">What can the State of Georgia do to make its projects more competitive for OZ investment? <span class="opt">(optional)</span></label>
+      <label class="field-label">What can the State of Georgia do to make projects more competitive for OZ investment? <span class="opt">(optional)</span></label>
       <div class="field-hint">e.g., state co-investment, technical assistance, streamlined permitting, QOF matchmaking</div>
       <textarea placeholder="Share your suggestions..."></textarea>
     </div>
-
     <div class="field-group">
-      <label class="field-label">What additional information can the State of Georgia provide to show that it's open for business? <span class="opt">(optional)</span></label>
+      <label class="field-label">What additional information can Georgia provide to show it's open for business? <span class="opt">(optional)</span></label>
       <div class="field-hint">e.g., project pipeline dashboard, proactive outreach to fund managers, investment prospectus</div>
       <textarea placeholder="Share your ideas..."></textarea>
     </div>
-
     <div class="form-nav">
       <button class="btn btn-secondary" onclick="goTo(4)">← Back</button>
       <button class="btn btn-primary" onclick="goTo(6)">Review & Submit →</button>
     </div>
   </div>
 
-  <!-- ── REVIEW & SUBMIT ── -->
+  <!-- REVIEW & SUBMIT -->
   <div class="form-section" id="section-6">
     <div class="section-header">
       <div class="letter">Final Step</div>
       <h2>Review & Submit</h2>
     </div>
-
     <div class="confirm-box">
       By submitting, you confirm that the information provided is accurate to the best of your knowledge. A confirmation copy will be emailed to you. You may submit additional nominations for other census tracts.
     </div>
-
-    <div class="priority-note">
-      <strong>A note on multiple nominations</strong>
-      Quality matters more than quantity. We encourage you to submit your strongest nominations first. If you are nominating more than 3 tracts, be prepared to explain why each one deserves priority consideration.
-    </div>
-
-    <div style="margin-top: 28px;">
+    <div style="margin-top:28px">
       <div class="review-section">
         <h3>A. Contact</h3>
         <div class="review-row"><span class="key">Nomination type</span><span class="val">—</span></div>
@@ -1097,74 +750,59 @@
       </div>
       <div class="review-section">
         <h3>D. Investment Potential</h3>
-        <div class="review-row"><span class="key">Nomination type</span><span class="val">—</span></div>
-        <div class="review-row"><span class="key">Project type</span><span class="val">—</span></div>
-        <div class="review-row"><span class="key">Project readiness</span><span class="val">—</span></div>
+        <div class="review-row"><span class="key">Nomination path</span><span class="val">—</span></div>
+        <div class="review-row"><span class="key">Project / investment type</span><span class="val">—</span></div>
+        <div class="review-row"><span class="key">Readiness level</span><span class="val">—</span></div>
+      </div>
+      <div class="review-section">
+        <h3>E. Documents</h3>
+        <div class="review-row"><span class="key">File uploaded</span><span class="val">—</span></div>
+        <div class="review-row"><span class="key">Links provided</span><span class="val">—</span></div>
       </div>
     </div>
-
     <div class="form-nav">
       <button class="btn btn-secondary" onclick="goTo(5)">← Back</button>
       <button class="btn btn-submit" onclick="submitForm()">Submit Nomination →</button>
     </div>
   </div>
 
-</div>
+</div><!-- /form-layout -->
 
 <script>
-  let currentSection = 0;
-  const totalSections = 7;
-
+  let cur = 0;
   function goTo(n) {
-    document.getElementById('section-' + currentSection).classList.remove('active');
-    document.querySelectorAll('.step-tab')[currentSection].classList.remove('active');
-    if (currentSection < n) {
-      document.querySelectorAll('.step-tab')[currentSection].classList.add('completed');
-    }
-    currentSection = n;
-    document.getElementById('section-' + n).classList.add('active');
+    document.getElementById('section-'+cur).classList.remove('active');
+    document.querySelectorAll('.step-tab')[cur].classList.remove('active');
+    if (cur < n) document.querySelectorAll('.step-tab')[cur].classList.add('completed');
+    cur = n;
+    document.getElementById('section-'+n).classList.add('active');
     document.querySelectorAll('.step-tab')[n].classList.add('active');
-    window.scrollTo({ top: document.querySelector('.progress-nav').offsetTop - 10, behavior: 'smooth' });
+    window.scrollTo({top: document.querySelector('.progress-nav').offsetTop - 10, behavior:'smooth'});
   }
 
   function toggleNomType(el, type) {
-    document.querySelectorAll('.option-item').forEach(i => {
-      if (i.querySelector('input[name="nom_type"]')) i.classList.remove('selected');
-    });
+    document.querySelectorAll('input[name="nom_type"]').forEach(r => r.closest('.option-item').classList.remove('selected'));
     el.classList.add('selected');
-    const orgFields = document.getElementById('org-fields');
-    if (type === 'org') orgFields.classList.add('show');
-    else orgFields.classList.remove('show');
+    document.getElementById('org-fields').classList.toggle('show', type === 'org');
   }
 
   function selectPath(path) {
-    document.getElementById('path-tract').classList.remove('selected');
-    document.getElementById('path-project').classList.remove('selected');
-    document.getElementById('path-' + path).classList.add('selected');
-    const projectFields = document.getElementById('project-only-fields');
-    const tractHint = document.getElementById('desc-hint-tract');
-    const projectHint = document.getElementById('desc-hint-project');
-    if (path === 'project') {
-      projectFields.classList.add('show');
-      tractHint.style.display = 'none';
-      projectHint.style.display = 'block';
-    } else {
-      projectFields.classList.remove('show');
-      tractHint.style.display = 'block';
-      projectHint.style.display = 'none';
-    }
+    ['tract','project'].forEach(p => document.getElementById('path-'+p).classList.remove('selected'));
+    document.getElementById('path-'+path).classList.add('selected');
+    document.getElementById('tract-fields').classList.toggle('show', path === 'tract');
+    document.getElementById('project-fields').classList.toggle('show', path === 'project');
   }
 
-  // Generic option selection highlight
+  function showBox(id, show) {
+    document.getElementById(id).classList.toggle('show', show);
+  }
+
   document.querySelectorAll('.option-item').forEach(item => {
     item.addEventListener('click', function() {
       const input = this.querySelector('input');
       if (!input) return;
-      if (input.type === 'radio') {
-        const name = input.name;
-        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-          r.closest('.option-item').classList.remove('selected');
-        });
+      if (input.type === 'radio' && input.name) {
+        document.querySelectorAll('input[name="'+input.name+'"]').forEach(r => r.closest('.option-item').classList.remove('selected'));
         this.classList.add('selected');
       } else if (input.type === 'checkbox') {
         this.classList.toggle('selected', input.checked);
@@ -1173,7 +811,7 @@
   });
 
   function submitForm() {
-    alert('✅ Thank you! Your nomination has been submitted.\n\nA confirmation copy will be emailed to you.\n\n(This is a mockup — no data was actually submitted.)');
+    alert('✅ Nomination submitted!\n\nA confirmation copy will be emailed to you.\n\n(This is a mockup — no data was actually submitted.)');
   }
 </script>
 </body>
