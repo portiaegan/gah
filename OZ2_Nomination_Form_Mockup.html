@@ -232,6 +232,23 @@
       <p>Who is submitting this nomination and on whose behalf?</p>
     </div>
     <div class="field-group">
+      <label class="field-label">What best describes you or your organization? <span class="req">*</span></label>
+      <div class="field-hint">This helps us understand the context of your nomination.</div>
+      <select name="nominator_role">
+        <option value="">Select...</option>
+        <option>Local or county government</option>
+        <option>State elected official or their office</option>
+        <option>Economic development organization or regional planning commission</option>
+        <option>Developer or project sponsor — I have a specific project or site in mind</option>
+        <option>Business owner — I operate or am expanding a business within or near this tract</option>
+        <option>Qualified Opportunity Fund — I am seeking investable projects or tracts</option>
+        <option>Investor — I have capital gains to reinvest and am looking for OZ projects</option>
+        <option>Nonprofit organization or community group</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="field-group">
       <label class="field-label">Are you nominating on behalf of yourself or an organization? <span class="req">*</span></label>
       <div class="options-list">
         <label class="option-item" onclick="toggleNomType(this,'individual')"><input type="radio" name="nom_type"> Individual — nominating on my own behalf</label>
@@ -246,7 +263,7 @@
         </div>
         <div class="field-group no-sep" style="margin-bottom:0">
           <label class="field-label">Type of Organization <span class="opt">(optional)</span></label>
-          <select><option value="">Select type...</option><option>Municipal Government</option><option>County Government</option><option>Elected Official's Office</option><option>Developer</option><option>Business</option><option>Nonprofit Organization</option><option>Regional Planning Commission</option><option>Economic Development Organization</option><option>Other</option></select>
+          <select><option value="">Select type...</option><option>Municipal Government</option><option>County Government</option><option>Elected Official's Office</option><option>Economic Development Organization</option><option>Regional Planning Commission</option><option>Developer / Project Sponsor</option><option>Business</option><option>Nonprofit Organization</option><option>Other</option></select>
         </div>
       </div>
     </div>
@@ -382,16 +399,13 @@
       <label class="field-label">Key challenges facing this tract <span class="req">*</span></label>
       <div class="field-hint">Select all that apply</div>
       <div class="options-list two-col">
-        <label class="option-item"><input type="checkbox"> Business attraction barriers</label>
-        <label class="option-item"><input type="checkbox"> Childcare / supportive service gaps</label>
+        <label class="option-item"><input type="checkbox"> Lack of jobs and economic opportunity</label>
         <label class="option-item"><input type="checkbox"> Downtown or commercial vacancy</label>
-        <label class="option-item"><input type="checkbox"> Food desert</label>
-        <label class="option-item"><input type="checkbox"> Healthcare / service access</label>
-        <label class="option-item"><input type="checkbox"> Housing affordability / cost burden</label>
-        <label class="option-item"><input type="checkbox"> Lack of workforce or affordable housing</label>
+        <label class="option-item"><input type="checkbox"> Business attraction barriers</label>
+        <label class="option-item"><input type="checkbox"> Housing affordability and supply</label>
         <label class="option-item"><input type="checkbox"> Limited or aging infrastructure</label>
-        <label class="option-item"><input type="checkbox"> Transportation needs</label>
-        <label class="option-item"><input type="checkbox"> Workforce access and job creation need</label>
+        <label class="option-item"><input type="checkbox"> Limited access to services (healthcare, childcare, food)</label>
+        <label class="option-item"><input type="checkbox"> Transportation and connectivity gaps</label>
       </div>
     </div>
     <div class="field-group">
@@ -408,14 +422,11 @@
       <label class="field-label">Alignment with Georgia's economic development priorities <span class="req">*</span></label>
       <div class="field-hint">Select all that apply</div>
       <div class="options-list two-col">
-        <label class="option-item"><input type="checkbox"> Adaptive reuse of vacant buildings</label>
-        <label class="option-item"><input type="checkbox"> Business formation and entrepreneurship</label>
-        <label class="option-item"><input type="checkbox"> Community facilities in underserved areas</label>
-        <label class="option-item"><input type="checkbox"> Downtown / Main Street revitalization</label>
+        <label class="option-item"><input type="checkbox"> Job creation and business growth</label>
         <label class="option-item"><input type="checkbox"> Housing access and affordability</label>
-        <label class="option-item"><input type="checkbox"> Infrastructure investment</label>
-        <label class="option-item"><input type="checkbox"> Industrial investment</label>
-        <label class="option-item"><input type="checkbox"> Support for state-identified target industries</label>
+        <label class="option-item"><input type="checkbox"> Downtown and community revitalization</label>
+        <label class="option-item"><input type="checkbox"> Infrastructure and connectivity investment</label>
+        <label class="option-item"><input type="checkbox"> Support for state target industries</label>
       </div>
     </div>
     <div class="form-nav">
@@ -447,21 +458,22 @@
       </div>
     </div>
 
+    <!-- ALL FIELDS — hidden until path selected -->
+    <div class="conditional" id="all-fields">
+
     <!-- TRACT PATH -->
     <div class="conditional" id="tract-fields">
       <div class="field-group no-sep">
         <label class="field-label">What types of investment could this tract support? <span class="req">*</span></label>
         <div class="field-hint">Select all that apply — think about market, infrastructure, and community context.</div>
         <div class="options-list two-col">
-          <label class="option-item"><input type="checkbox"> Market-rate housing</label>
-          <label class="option-item"><input type="checkbox"> Affordable / workforce housing</label>
-          <label class="option-item"><input type="checkbox"> Mixed-use / commercial</label>
-          <label class="option-item"><input type="checkbox"> Industrial / logistics / manufacturing</label>
-          <label class="option-item"><input type="checkbox"> Business formation or startup</label>
-          <label class="option-item"><input type="checkbox"> Business expansion or retention</label>
-          <label class="option-item"><input type="checkbox"> Community facilities / services</label>
+          <label class="option-item"><input type="checkbox"> Housing — market-rate or affordable</label>
+          <label class="option-item"><input type="checkbox"> Mixed-use or commercial</label>
+          <label class="option-item"><input type="checkbox"> Industrial, logistics, or manufacturing</label>
+          <label class="option-item"><input type="checkbox"> Business formation, expansion, or retention</label>
+          <label class="option-item"><input type="checkbox"> Adaptive reuse or brownfield redevelopment</label>
+          <label class="option-item"><input type="checkbox"> Community facilities or services</label>
           <label class="option-item"><input type="checkbox"> Infrastructure</label>
-          <label class="option-item"><input type="checkbox"> Adaptive reuse / brownfield redevelopment</label>
           <label class="option-item"><input type="checkbox"> Other</label>
         </div>
       </div>
@@ -484,64 +496,189 @@
         <input type="text" placeholder="e.g., 4th Street Mixed-Use Redevelopment">
       </div>
       <div class="field-group">
-        <label class="field-label">Type of project <span class="req">*</span></label>
+        <label class="field-label">Is this a real estate project or an operating business? <span class="req">*</span></label>
+        <select name="proj_cat" onchange="showProjKind(this.value === 'Real estate — residential' || this.value === 'Real estate — commercial or industrial' ? 're' : this.value === 'Operating business' ? 'biz' : this.value === 'Mixed / multiple' ? 'both' : '')">
+          <option value="">Select...</option>
+          <option>Real estate — residential</option>
+          <option>Real estate — commercial or industrial</option>
+          <option>Operating business</option>
+          <option>Mixed / multiple</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Specific project type <span class="req">*</span></label>
         <div class="field-hint">Select all that apply</div>
         <div class="options-list two-col">
           <label class="option-item"><input type="checkbox"> Market-rate multifamily housing</label>
-          <label class="option-item"><input type="checkbox"> Mixed-use real estate (residential over retail/office)</label>
           <label class="option-item"><input type="checkbox"> Affordable / workforce housing (non-LIHTC)</label>
-          <label class="option-item"><input type="checkbox"> Industrial, logistics, or warehouse</label>
-          <label class="option-item"><input type="checkbox"> Data center / digital infrastructure</label>
-          <label class="option-item"><input type="checkbox"> Office / creative office / flex space</label>
+          <label class="option-item"><input type="checkbox"> Mixed-use (residential over retail or office)</label>
           <label class="option-item"><input type="checkbox"> Retail / neighborhood commercial</label>
           <label class="option-item"><input type="checkbox"> Hospitality</label>
-          <label class="option-item"><input type="checkbox"> Business formation or startup</label>
-          <label class="option-item"><input type="checkbox"> Business expansion or relocation</label>
-          <label class="option-item"><input type="checkbox"> Operating business within an OZ</label>
+          <label class="option-item"><input type="checkbox"> Industrial, logistics, or warehouse</label>
+          <label class="option-item"><input type="checkbox"> Agricultural production, food processing, or agtech</label>
+          <label class="option-item"><input type="checkbox"> Data center / digital infrastructure</label>
           <label class="option-item"><input type="checkbox"> Renewable energy / clean infrastructure</label>
-          <label class="option-item"><input type="checkbox"> Adaptive reuse of existing building</label>
-          <label class="option-item"><input type="checkbox"> Brownfield / contaminated site redevelopment</label>
-          <label class="option-item"><input type="checkbox"> Greenfield development</label>
-          <label class="option-item"><input type="checkbox"> Community facility / services</label>
+          <label class="option-item"><input type="checkbox"> Community facility or services</label>
           <label class="option-item"><input type="checkbox"> Infrastructure</label>
-          <label class="option-item"><input type="checkbox"> Large-scale master-planned development</label>
           <label class="option-item" style="grid-column:1/-1"><input type="checkbox"> Other</label>
         </div>
       </div>
       <div class="field-group">
-        <label class="field-label">Site conditions <span class="opt">(optional)</span></label>
+        <label class="field-label">Site and development approach <span class="opt">(optional)</span></label>
         <div class="field-hint">Select all that apply</div>
         <div class="options-list two-col">
-          <label class="option-item"><input type="checkbox"> Greenfield (undeveloped land)</label>
-          <label class="option-item"><input type="checkbox"> Brownfield / contaminated site</label>
-          <label class="option-item"><input type="checkbox"> Vacant or underutilized building</label>
-          <label class="option-item"><input type="checkbox"> Blighted anchor property</label>
-          <label class="option-item"><input type="checkbox"> Historic structure</label>
+          <label class="option-item"><input type="checkbox"> Greenfield — new construction on undeveloped land</label>
+          <label class="option-item"><input type="checkbox"> Adaptive reuse of existing building</label>
+          <label class="option-item"><input type="checkbox"> Brownfield / contaminated site cleanup and redevelopment</label>
+          <label class="option-item"><input type="checkbox"> Substantial improvement of existing structure</label>
+          <label class="option-item"><input type="checkbox"> Historic preservation / rehabilitation</label>
           <label class="option-item"><input type="checkbox"> Publicly-owned land or building</label>
+          <label class="option-item"><input type="checkbox"> Blighted or vacant anchor property</label>
         </div>
       </div>
       <div class="field-group">
         <label class="field-label">Project description <span class="req">*</span></label>
-        <div class="field-hint">What will be built or developed? Who is the developer or sponsor? What is the scale, intended use, and who will it serve?</div>
-        <textarea placeholder="Describe the project..."></textarea>
+        <div class="field-hint">For real estate: what will be built or developed, by whom, at what scale, and who will it serve? For a business: describe the business, what it does, and how OZ investment would enable growth or establishment in this tract.</div>
+        <textarea placeholder="e.g., Mixed-use development with 40 market-rate units above ground-floor retail, sponsored by ABC Development... / or / Specialty food manufacturer expanding production capacity, 22 current employees, seeking to construct a 15,000 sq ft facility..."></textarea>
       </div>
-      <div class="field-group">
-        <label class="field-label">IRS eligibility — 30-month requirement <span class="opt">(optional)</span></label>
-        <div class="field-hint">Can this project meet the "substantial improvement" or "original use" requirement?</div>
-        <div class="options-list">
-          <label class="option-item"><input type="radio" name="irs"> Yes — original use (new construction or first use in the OZ)</label>
-          <label class="option-item"><input type="radio" name="irs"> Yes — substantial improvement (doubling the basis within 30 months)</label>
-          <label class="option-item"><input type="radio" name="irs"> Uncertain — needs further analysis</label>
-          <label class="option-item"><input type="radio" name="irs"> No / Not applicable</label>
+
+      <div class="conditional" id="re-fields">
+        <div class="field-group">
+          <label class="field-label">New construction or substantial improvement? <span class="opt">(optional)</span></label>
+          <select name="re_type" onchange="showBox('si-confirm', this.value === 'Substantial improvement (doubling the basis within 30 months)')">
+            <option value="">Select...</option>
+            <option>New construction / original use</option>
+            <option>Substantial improvement (doubling the basis within 30 months)</option>
+            <option>Uncertain</option>
+          </select>
         </div>
+        <div class="conditional" id="si-confirm">
+          <div class="field-group">
+            <label class="option-item" style="border-color:var(--gold-border);background:var(--gold-bg)">
+              <input type="checkbox"> I confirm this project will meet the substantial improvement test (doubling the adjusted basis of the existing property within 30 months of acquisition)
+            </label>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Allowed by current zoning? <span class="opt">(optional)</span></label>
+          <select name="zoning_ok">
+            <option value="">Select...</option>
+            <option>Yes</option>
+            <option>No — rezoning required</option>
+            <option>Unknown</option>
+          </select>
+        </div>
+      </div>
+      <div class="conditional" id="biz-fields">
+
+        <div class="field-group">
+          <label class="field-label">Business stage <span class="req">*</span></label>
+          <select name="biz_stage">
+            <option value="">Select...</option>
+            <option>New business — startup that would locate in the OZ</option>
+            <option>Existing business — expanding operations within the OZ</option>
+            <option>Existing business — relocating to the OZ from elsewhere in Georgia</option>
+            <option>Existing business — relocating to the OZ from outside Georgia</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Industry / sector <span class="req">*</span></label>
+          <select name="biz_industry">
+            <option value="">Select...</option>
+            <option>Advanced manufacturing</option>
+            <option>Aerospace and defense</option>
+            <option>Agribusiness / food production / agtech</option>
+            <option>Clean energy / renewable energy</option>
+            <option>Construction / building trades</option>
+            <option>Data / technology / software</option>
+            <option>Distribution / logistics / warehousing</option>
+            <option>Financial services</option>
+            <option>Healthcare / life sciences / bioscience</option>
+            <option>Hospitality / food and beverage / tourism</option>
+            <option>Infrastructure engineering</option>
+            <option>Professional services</option>
+            <option>Retail / neighborhood commercial</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">What would the OZ investment fund? <span class="req">*</span></label>
+          <div class="field-hint">Select all that apply — note that working capital has strict limits under OZ rules</div>
+          <div class="options-list two-col">
+            <label class="option-item"><input type="checkbox"> Construction or renovation of a facility</label>
+            <label class="option-item"><input type="checkbox"> Purchase of an existing building</label>
+            <label class="option-item"><input type="checkbox"> Equipment and machinery</label>
+            <label class="option-item"><input type="checkbox"> Technology / software / digital infrastructure</label>
+            <label class="option-item"><input type="checkbox"> Hiring and workforce development</label>
+            <label class="option-item"><input type="checkbox"> Working capital (subject to OZ limitations)</label>
+            <label class="option-item"><input type="checkbox"> Land acquisition</label>
+            <label class="option-item"><input type="checkbox"> Other</label>
+          </div>
+        </div>
+
+        <div class="two-col-grid">
+          <div class="field-group no-sep" style="margin-bottom:0">
+            <label class="field-label">Current number of employees <span class="opt">(optional)</span></label>
+            <input type="text" placeholder="e.g., 12">
+          </div>
+          <div class="field-group no-sep" style="margin-bottom:0">
+            <label class="field-label">Projected new jobs created <span class="opt">(optional)</span></label>
+            <input type="text" placeholder="e.g., 25 FTE over 3 years">
+          </div>
+        </div>
+
+        <div class="field-group" style="margin-top:20px">
+          <label class="field-label">Does the business already operate within this OZ tract? <span class="opt">(optional)</span></label>
+          <select name="biz_location">
+            <option value="">Select...</option>
+            <option>Yes — already operating within this tract</option>
+            <option>Yes — operating nearby but would move into this tract</option>
+            <option>No — would be a new presence in this tract</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="option-item" style="border-color:var(--blue-mid);background:var(--blue-light)">
+            <input type="checkbox"> I confirm this business will maintain at least 70% of its tangible assets within a Qualified Opportunity Zone
+          </label>
+        </div>
+
+      </div>
+      <div class="two-col-grid">
+        <div class="field-group no-sep" style="margin-bottom:0">
+          <label class="field-label">Total project cost <span class="opt">(optional)</span></label>
+          <input type="text" placeholder="e.g., $4.2M">
+        </div>
+        <div class="field-group no-sep" style="margin-bottom:0">
+          <label class="field-label">Amount of OZ equity sought <span class="opt">(optional)</span></label>
+          <input type="text" placeholder="e.g., $1.5M">
+        </div>
+      </div>
+      <div class="field-group" style="margin-top:20px">
+        <label class="field-label">Describe and quantify project outcomes <span class="opt">(optional)</span></label>
+        <div class="field-hint">What measurable results do you expect? e.g., units, square footage, jobs, businesses supported, acres remediated.</div>
+        <textarea placeholder="e.g., 60 affordable units, 120 construction jobs, 45 permanent FTE, remediation of 3-acre brownfield..."></textarea>
       </div>
     </div>
 
+
     <!-- SHARED FIELDS -->
     <div class="field-group">
-      <label class="field-label">Alignment with state target industries or priorities <span class="opt">(optional)</span></label>
-      <div class="field-hint">Does this tract or project support sectors such as advanced manufacturing, life sciences, agribusiness, logistics, or tourism?</div>
-      <textarea placeholder="Describe alignment with Georgia's economic development agenda..."></textarea>
+      <label class="field-label">Which Georgia economic development priority does this nomination best support? <span class="opt">(optional)</span></label>
+      <div class="field-hint">Select the one that fits best</div>
+      <select name="ga_priority">
+        <option value="">Select...</option>
+        <option>Housing supply and affordability — workforce, market-rate, or transit-oriented</option>
+        <option>Job creation and business growth — including business formation, expansion, and retention</option>
+        <option>Advanced industries — manufacturing, energy, clean tech, life sciences, agtech, data infrastructure</option>
+        <option>Downtown and community revitalization — Main Street, adaptive reuse, place-based investment</option>
+        <option>Rural economic development — diversification, regional investment, and rural infrastructure</option>
+        <option>Community infrastructure — transportation, transit, broadband, utilities, resilience</option>
+        <option>Innovation and entrepreneurship — startups, research commercialization, venture capital</option>
+        <option>Other</option>
+      </select>
     </div>
 
     <div class="field-group">
@@ -553,13 +690,14 @@
     <div class="subsection-title">Project Readiness</div>
     <div class="field-group">
       <label class="field-label">Readiness level <span class="req">*</span></label>
-      <div class="options-list">
-        <label class="option-item"><input type="radio" name="readiness"> No project identified — nominating based on tract investment potential</label>
-        <label class="option-item"><input type="radio" name="readiness"> Exploratory — concept only</label>
-        <label class="option-item"><input type="radio" name="readiness"> Planning concept — feasibility underway</label>
-        <label class="option-item"><input type="radio" name="readiness"> Permitting stage</label>
-        <label class="option-item"><input type="radio" name="readiness"> Shovel-ready — approvals in hand</label>
-      </div>
+      <select name="readiness">
+        <option value="">Select...</option>
+        <option>No project identified — nominating based on tract investment potential</option>
+        <option>Exploratory — concept only</option>
+        <option>Planning concept — feasibility underway</option>
+        <option>Permitting stage</option>
+        <option>Shovel-ready — approvals in hand</option>
+      </select>
     </div>
 
     <div class="subsection-title">Location & Infrastructure</div>
@@ -575,19 +713,20 @@
     </div>
     <div class="field-group" style="margin-top:20px">
       <label class="field-label">Proximity to major transportation infrastructure <span class="opt">(optional)</span></label>
-      <div class="options-list">
-        <label class="option-item"><input type="radio" name="transit"> Adjacent / within 0.5 miles of interstate interchange, rail spur, or transit hub</label>
-        <label class="option-item"><input type="radio" name="transit"> Within 1 mile</label>
-        <label class="option-item"><input type="radio" name="transit"> Within 5 miles</label>
-        <label class="option-item"><input type="radio" name="transit"> More than 5 miles</label>
-      </div>
+      <select name="transit">
+        <option value="">Select...</option>
+        <option>Adjacent / within 0.5 miles of interstate interchange, rail spur, or transit hub</option>
+        <option>Within 1 mile</option>
+        <option>Within 5 miles</option>
+        <option>More than 5 miles</option>
+      </select>
     </div>
 
     <div class="subsection-title">Site Control & Financing</div>
     <div class="two-col-grid">
       <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Site Control <span class="opt">(if project identified)</span></label>
-        <select><option value="">Select...</option><option>No site control yet</option><option>Letter of intent</option><option>Option to purchase</option><option>Purchase agreement executed</option><option>Site owned by developer / sponsor</option><option>Publicly-owned (local government)</option><option>Not applicable</option></select>
+        <select><option value="">Select...</option><option>No site control yet</option><option>Letter of intent or expression of interest</option><option>Option to purchase or lease</option><option>Purchase or lease agreement executed</option><option>Site owned by developer / sponsor</option><option>Publicly-owned (local government)</option><option>Not applicable — no specific project</option></select>
       </div>
       <div class="field-group no-sep" style="margin-bottom:0">
         <label class="field-label">Status of capital sources <span class="opt">(if project identified)</span></label>
@@ -611,11 +750,12 @@
     <!-- QOF with conditional textarea -->
     <div class="field-group">
       <label class="field-label">In discussion with a Qualified Opportunity Fund (QOF)? <span class="opt">(optional)</span></label>
-      <div class="options-list">
-        <label class="option-item" onclick="showBox('qof-box',true)"><input type="radio" name="qof"> Yes</label>
-        <label class="option-item" onclick="showBox('qof-box',true)"><input type="radio" name="qof"> Exploring</label>
-        <label class="option-item" onclick="showBox('qof-box',false)"><input type="radio" name="qof"> No / Not applicable</label>
-      </div>
+      <select name="qof" onchange="showBox('qof-box', this.value === 'Yes' || this.value === 'Exploring')">
+        <option value="">Select...</option>
+        <option>Yes</option>
+        <option>Exploring</option>
+        <option>No / Not applicable</option>
+      </select>
       <div class="conditional" id="qof-box" style="margin-top:8px">
         <textarea placeholder="Fund name, geographic focus, stage of conversation..."></textarea>
       </div>
@@ -624,11 +764,12 @@
     <!-- Investors with conditional textarea -->
     <div class="field-group">
       <label class="field-label">OZ investors identified? <span class="opt">(optional)</span></label>
-      <div class="options-list">
-        <label class="option-item" onclick="showBox('investor-box',true)"><input type="radio" name="investor"> Yes</label>
-        <label class="option-item" onclick="showBox('investor-box',true)"><input type="radio" name="investor"> In discussion</label>
-        <label class="option-item" onclick="showBox('investor-box',false)"><input type="radio" name="investor"> No / Not applicable</label>
-      </div>
+      <select name="investor" onchange="showBox('investor-box', this.value === 'Yes' || this.value === 'In discussion')">
+        <option value="">Select...</option>
+        <option>Yes</option>
+        <option>In discussion</option>
+        <option>No / Not applicable</option>
+      </select>
       <div class="conditional" id="investor-box" style="margin-top:8px">
         <textarea placeholder="Type of investor, approximate capital size, stage of conversation..."></textarea>
       </div>
@@ -645,14 +786,12 @@
       <label class="field-label">Expected community benefits <span class="req">*</span></label>
       <div class="field-hint">Select all that apply</div>
       <div class="options-list two-col">
-        <label class="option-item"><input type="checkbox"> Business formation</label>
-        <label class="option-item"><input type="checkbox"> Business expansion / retention</label>
-        <label class="option-item"><input type="checkbox"> Community services</label>
-        <label class="option-item"><input type="checkbox"> Housing access</label>
-        <label class="option-item"><input type="checkbox"> Infrastructure investment</label>
-        <label class="option-item"><input type="checkbox"> Job creation</label>
-        <label class="option-item"><input type="checkbox"> Tax base growth</label>
-        <label class="option-item"><input type="checkbox"> Workforce development</label>
+        <label class="option-item"><input type="checkbox"> Job creation and workforce development</label>
+        <label class="option-item"><input type="checkbox"> Business growth and entrepreneurship</label>
+        <label class="option-item"><input type="checkbox"> Housing access and affordability</label>
+        <label class="option-item"><input type="checkbox"> Community services and facilities</label>
+        <label class="option-item"><input type="checkbox"> Infrastructure improvement</label>
+        <label class="option-item"><input type="checkbox"> Tax base and fiscal growth</label>
       </div>
     </div>
     <div class="two-col-grid">
@@ -665,6 +804,8 @@
         <input type="text" placeholder="Total units / % at 60–80% AMI">
       </div>
     </div>
+
+    </div><!-- /all-fields -->
 
     <div class="form-nav">
       <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
@@ -789,12 +930,27 @@
   function selectPath(path) {
     ['tract','project'].forEach(p => document.getElementById('path-'+p).classList.remove('selected'));
     document.getElementById('path-'+path).classList.add('selected');
+    document.getElementById('all-fields').classList.add('show');
     document.getElementById('tract-fields').classList.toggle('show', path === 'tract');
     document.getElementById('project-fields').classList.toggle('show', path === 'project');
+    // reset RE/biz conditional fields when switching paths
+    if (path === 'tract') {
+      document.getElementById('re-fields').classList.remove('show');
+      document.getElementById('biz-fields').classList.remove('show');
+      document.getElementById('si-confirm').classList.remove('show');
+    }
   }
 
   function showBox(id, show) {
     document.getElementById(id).classList.toggle('show', show);
+  }
+
+  function showProjKind(kind) {
+    document.getElementById('re-fields').classList.toggle('show', kind === 're' || kind === 'both');
+    document.getElementById('biz-fields').classList.toggle('show', kind === 'biz' || kind === 'both');
+    if (kind !== 're' && kind !== 'both') {
+      document.getElementById('si-confirm').classList.remove('show');
+    }
   }
 
   document.querySelectorAll('.option-item').forEach(item => {
