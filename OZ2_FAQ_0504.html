@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OZ 2.0 — Frequently Asked Questions</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1a3a5c; --navy-dark:#0f2340; --blue:#2563a8;
+    --blue-light:#dbeafe; --blue-mid:#93c5fd;
+    --gold:#b45309; --gold-bg:#fffbeb; --gold-border:#fde68a;
+    --gray-50:#f8fafc; --gray-100:#f1f5f9; --gray-200:#e2e8f0;
+    --gray-400:#94a3b8; --gray-600:#475569; --gray-800:#1e293b;
+    --green:#166534; --green-bg:#f0fdf4; --green-border:#86efac;
+    --radius:6px;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:var(--gray-50); color:var(--gray-800); font-size:15px; line-height:1.6; }
+
+  /* HEADER */
+  .site-header { background:var(--navy-dark); padding:0 40px; display:flex; align-items:center; gap:16px; height:56px; border-bottom:3px solid var(--blue); }
+  .site-header .seal { width:32px; height:32px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .site-header span { color:rgba(255,255,255,0.9); font-size:13px; font-weight:500; }
+  .site-header .divider { color:rgba(255,255,255,0.3); margin:0 4px; }
+
+  /* HERO */
+  .hero { background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#1e4d8c 100%); padding:40px 40px 36px; }
+  .hero-back { font-size:13px; color:rgba(255,255,255,0.6); text-decoration:none; display:inline-flex; align-items:center; gap:6px; margin-bottom:16px; cursor:pointer; }
+  .hero-back:hover { color:white; }
+  .hero-tag { display:inline-block; background:var(--blue); color:#fff; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px; margin-bottom:14px; }
+  .hero h1 { font-family:'Source Serif 4',serif; font-size:28px; font-weight:600; color:#fff; margin-bottom:8px; }
+  .hero p { color:rgba(255,255,255,0.7); font-size:14px; max-width:560px; }
+
+  /* LAYOUT */
+  .page-layout { max-width:1100px; margin:0 auto; padding:48px 40px 80px; display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:start; }
+
+  /* SIDEBAR NAV */
+  .sidebar { position:sticky; top:24px; }
+  .sidebar-section { margin-bottom:28px; }
+  .sidebar-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gray-400); margin-bottom:10px; }
+  .sidebar-link { display:block; font-size:14px; color:var(--gray-600); padding:6px 12px; border-radius:var(--radius); cursor:pointer; transition:all .12s; border-left:2px solid transparent; text-decoration:none; }
+  .sidebar-link:hover { background:var(--blue-light); color:var(--navy); border-left-color:var(--blue-mid); }
+  .sidebar-link.active { background:var(--blue-light); color:var(--navy); border-left-color:var(--blue); font-weight:600; }
+  .sidebar-divider { border:none; border-top:1px solid var(--gray-200); margin:20px 0; }
+  .sidebar-cta { background:var(--navy); color:#fff; padding:12px 16px; border-radius:var(--radius); font-size:14px; font-weight:600; text-align:center; cursor:pointer; display:block; text-decoration:none; transition:background .15s; }
+  .sidebar-cta:hover { background:var(--blue); }
+  .sidebar-cta-note { font-size:12px; color:var(--gray-400); text-align:center; margin-top:8px; }
+
+  /* MAIN CONTENT */
+  .faq-section { margin-bottom:56px; scroll-margin-top:24px; }
+  .faq-section-title { font-family:'Source Serif 4',serif; font-size:22px; font-weight:600; color:var(--navy); margin-bottom:6px; padding-bottom:12px; border-bottom:2px solid var(--blue-light); }
+  .faq-section-intro { font-size:14px; color:var(--gray-600); margin-bottom:24px; line-height:1.6; }
+
+  /* ACCORDION */
+  .faq-item { border:1px solid var(--gray-200); border-radius:var(--radius); margin-bottom:8px; overflow:hidden; background:#fff; }
+  .faq-q { padding:16px 20px; font-size:14px; font-weight:600; color:var(--gray-800); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; user-select:none; transition:background .12s; }
+  .faq-q:hover { background:var(--gray-50); }
+  .faq-q.open { background:var(--blue-light); color:var(--navy); }
+  .faq-chevron { font-size:12px; color:var(--gray-400); flex-shrink:0; transition:transform .2s; }
+  .faq-q.open .faq-chevron { transform:rotate(180deg); color:var(--blue); }
+  .faq-a { display:none; padding:0 20px 18px; font-size:14px; color:var(--gray-600); line-height:1.7; border-top:1px solid var(--blue-mid); }
+  .faq-a.open { display:block; }
+  .faq-a p { margin-bottom:10px; }
+  .faq-a p:last-child { margin-bottom:0; }
+  .faq-a ul { margin:8px 0 10px 18px; }
+  .faq-a ul li { margin-bottom:6px; }
+  .faq-a strong { color:var(--gray-800); }
+  .faq-a .link { color:var(--blue); text-decoration:underline; cursor:pointer; }
+  .faq-a .note { background:var(--gold-bg); border:1px solid var(--gold-border); border-radius:4px; padding:10px 14px; font-size:13px; color:#78350f; margin-top:10px; }
+  .faq-a .highlight { background:var(--green-bg); border:1px solid var(--green-border); border-radius:4px; padding:10px 14px; font-size:13px; color:var(--green); margin-top:10px; }
+
+  /* EXTERNAL LINKS BOX */
+  .links-box { background:#fff; border:1px solid var(--gray-200); border-radius:var(--radius); padding:20px 24px; margin-bottom:48px; }
+  .links-box h3 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:14px; }
+  .ext-link { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--gray-100); font-size:14px; }
+  .ext-link:last-child { border-bottom:none; padding-bottom:0; }
+  .ext-link-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  .ext-link-content a { color:var(--blue); font-weight:600; text-decoration:none; }
+  .ext-link-content a:hover { text-decoration:underline; }
+  .ext-link-content p { font-size:13px; color:var(--gray-600); margin-top:2px; }
+
+  @media(max-width:760px) {
+    .page-layout { grid-template-columns:1fr; }
+    .sidebar { position:static; }
+    .hero, .page-layout { padding-left:20px; padding-right:20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="seal">🍑</div>
+  <span>State of Georgia</span><span class="divider">|</span>
+  <span>Department of Community Affairs</span>
+</header>
+
+<div class="hero">
+  <a class="hero-back" href="OZ2_Nomination_Form_Mockup.html">← Back to Nomination Form</a>
+  <div class="hero-tag">OZ 2.0 — Open for Nominations</div>
+  <h1>Frequently Asked Questions</h1>
+  <p>Everything you need to know about Opportunity Zones, Georgia's nomination process, and how to submit a strong nomination.</p>
+</div>
+
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">About the Program</div>
+      <a class="sidebar-link active" onclick="scrollTo('what-are-oz')">What are Opportunity Zones?</a>
+      <a class="sidebar-link" onclick="scrollTo('oz-2')">OZ 2.0 — What's new</a>
+      <a class="sidebar-link" onclick="scrollTo('georgia')">Georgia's approach</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">The Nomination</div>
+      <a class="sidebar-link" onclick="scrollTo('who-should')">Who should nominate</a>
+      <a class="sidebar-link" onclick="scrollTo('how-used')">How nominations are used</a>
+      <a class="sidebar-link" onclick="scrollTo('strong')">What makes a strong nomination</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Completing the Form</div>
+      <a class="sidebar-link" onclick="scrollTo('form-help')">Form questions & tips</a>
+      <a class="sidebar-link" onclick="scrollTo('after')">What happens after</a>
+    </div>
+    <hr class="sidebar-divider">
+    <a class="sidebar-cta" href="OZ2_Nomination_Form_Mockup.html">Submit a Nomination →</a>
+    <p class="sidebar-cta-note">Deadline: August 15, 2026</p>
+    <hr class="sidebar-divider">
+    <div class="sidebar-label">External Resources</div>
+    <a class="sidebar-link" href="#" target="_blank">IRS Opportunity Zones guidance ↗</a>
+    <a class="sidebar-link" href="#" target="_blank">EIG Opportunity Zones tracker ↗</a>
+    <a class="sidebar-link" href="#" target="_blank">Georgia DCA programs ↗</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- SECTION 1: WHAT ARE OZ -->
+    <div class="faq-section" id="what-are-oz">
+      <h2 class="faq-section-title">What are Opportunity Zones?</h2>
+      <p class="faq-section-intro">The basics of the federal program — what it is, how it works, and who can use it.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What is an Opportunity Zone? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>An Opportunity Zone (OZ) is a low-income census tract designated by a state governor and certified by the U.S. Treasury. The designation unlocks a federal tax incentive that allows investors with capital gains to defer and reduce their tax liability by reinvesting those gains into designated OZ communities through a Qualified Opportunity Fund (QOF).</p>
+          <p>The program was created by the Tax Cuts and Jobs Act of 2017. Its goal is to direct private capital into economically distressed communities that might otherwise struggle to attract investment.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What is a Qualified Opportunity Fund (QOF)? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>A QOF is an investment vehicle — structured as a partnership or corporation — that holds at least 90% of its assets in Qualified Opportunity Zone property. Investors with eligible capital gains invest in a QOF to access the OZ tax benefits. QOFs then deploy that capital into projects or businesses located in designated OZ tracts.</p>
+          <p>QOFs can be large national funds or locally structured vehicles. They are established with the IRS and are responsible for ensuring investments meet OZ program requirements.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What tax benefits does the OZ program offer investors? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Under OZ 2.0, investors who reinvest eligible capital gains into a QOF can receive:</p>
+          <ul>
+            <li><strong>Temporary deferral</strong> of the original capital gains tax until the investment is sold or December 31, 2028 — whichever comes first</li>
+            <li><strong>Partial reduction</strong> of the original deferred gain (details pending final Treasury regulations)</li>
+            <li><strong>Permanent exclusion</strong> of gains from the OZ investment itself if held for at least 10 years</li>
+          </ul>
+          <div class="note">The specific benefit levels under OZ 2.0 are subject to final IRS and Treasury guidance. Investors and developers should consult qualified tax counsel before making investment decisions.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What types of projects qualify for OZ investment? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>OZ investment can flow into two main categories:</p>
+          <ul>
+            <li><strong>Real estate projects</strong> — new construction (original use) or substantial improvement of existing property within an OZ. Substantial improvement requires doubling the adjusted basis of the building within 30 months of acquisition.</li>
+            <li><strong>Operating businesses</strong> — businesses that maintain at least 70% of their tangible assets within an OZ tract. This includes startups, expanding businesses, and businesses relocating into the zone.</li>
+          </ul>
+          <p>There are important restrictions: vacant land and certain business types (golf courses, country clubs, massage parlors, hot tub facilities, suntan facilities, racetracks, casinos, liquor stores, and self-storage) are excluded or face special limitations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: OZ 2.0 -->
+    <div class="faq-section" id="oz-2">
+      <h2 class="faq-section-title">OZ 2.0 — What's New</h2>
+      <p class="faq-section-intro">How the new program differs from OZ 1.0 and what's changing for investors, developers, and communities.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What is OZ 2.0 and how is it different from the original program? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>OZ 2.0 is a reauthorization of the Opportunity Zones program, enacted as part of the One Big Beautiful Bill Act of 2025. It extends and updates the original 2017 program with several key changes:</p>
+          <ul>
+            <li><strong>New tract designations</strong> — states select a new set of census tracts, replacing OZ 1.0 designations. Designations take effect January 1, 2027.</li>
+            <li><strong>Updated eligibility criteria</strong> — the program expands eligible tract types modestly, including certain rural communities.</li>
+            <li><strong>Reporting requirements</strong> — OZ 2.0 includes new transparency and reporting requirements for QOFs, designed to improve accountability and measure community impact.</li>
+            <li><strong>Program continuity</strong> — the core tax incentive structure (deferral, reduction, exclusion) is preserved, though specific benefit levels are subject to final Treasury guidance.</li>
+          </ul>
+          <div class="note">Final regulations for OZ 2.0 are still being developed by the IRS and Treasury. Some program details may evolve. Check IRS.gov for the latest guidance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What happened to OZ 1.0 tracts? Do they still exist? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>OZ 1.0 designations expire December 31, 2026. After that date, investments in former OZ 1.0 tracts that are not re-designated under OZ 2.0 will no longer qualify for new OZ tax benefits. Existing investments made before the expiration date generally retain their OZ 1.0 benefits under the terms in place when they were made.</p>
+          <p>Some OZ 1.0 tracts may be re-nominated and re-designated under OZ 2.0, but there is no automatic carryover — each tract must go through the new nomination and selection process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">When do OZ 2.0 investments become eligible? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Investments in newly designated OZ 2.0 tracts become eligible for the OZ tax incentive starting January 1, 2027. Georgia's nomination deadline is August 15, 2026, with the state selection deadline following in late September 2026 — aligned with the federal deadline of September 29, 2026 for governors to submit designations to Treasury.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: GEORGIA -->
+    <div class="faq-section" id="georgia">
+      <h2 class="faq-section-title">Georgia's Approach</h2>
+      <p class="faq-section-intro">How Georgia is thinking about OZ 2.0, what the state is prioritizing, and what happened under OZ 1.0.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">How many tracts can Georgia designate? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Georgia has 942 eligible census tracts and may designate up to 236 as OZ 2.0 zones — approximately 25% of eligible tracts. The state is using a nomination process to identify the strongest candidates before making final selections.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What is Georgia prioritizing in its OZ 2.0 selections? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Georgia is looking for tracts where OZ designation would make a real difference — where private capital is close but not quite there without the incentive. The state's priorities include:</p>
+          <ul>
+            <li>Tracts with credible, near-ready investment opportunities</li>
+            <li>Projects that align with Georgia's economic development goals — job creation, housing, advanced industries, rural development, and community revitalization</li>
+            <li>Geographic diversity, ensuring communities across the state have access to the program</li>
+            <li>Tracts where OZ designation closes a genuine financing gap or accelerates timing</li>
+          </ul>
+          <p>This is an economic development initiative, not a commercial subsidy program. The state is not looking to simply designate the most distressed tracts — it is looking for tracts where investment is investable and where OZ capital will actually land.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What did OZ 1.0 accomplish in Georgia? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Georgia designated 260 census tracts under OZ 1.0 in 2018. Nationally, the program catalyzed an estimated $100 billion in private investment, supporting over 300,000 housing units. In Georgia, confirmed OZ 1.0 investments include:</p>
+          <ul>
+            <li><strong>Build-to-Rent Housing, Decatur &amp; Augusta Region</strong> — Pinnacle Partners and Trilogy Investment raised $60 million in OZ equity (10-year hold structure) to develop 45 market-rate townhomes in Decatur and 245 workforce housing units in the Augusta region. OZ equity served as the primary equity layer.</li>
+            <li><strong>Atlanta-Area Multifamily &amp; Mixed-Use</strong> — Atlanta ranked among the top U.S. metros for OZ equity deployment, with over $635 million raised for Atlanta-area projects in 2023 (CoStar). Multiple QOFs listed Georgia as an active investment geography focused on multifamily and workforce housing.</li>
+            <li><strong>South &amp; Southwest Atlanta (Invest Atlanta)</strong> — Invest Atlanta layered OZ equity with local tax abatement and gap funding to advance housing and mixed-use redevelopment in City of Atlanta OZ tracts. Projects moved forward only after OZ equity commitments were secured.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Will DCA provide any support to help communities attract OZ investment? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Georgia is committed to making its OZ 2.0 program investor-friendly and not just a list of designated tracts. The state is exploring tools to support deal flow, including:</p>
+          <ul>
+            <li>A project pipeline tool / marketplace to connect project sponsors, QOFs, and investors</li>
+            <li>Technical assistance for communities preparing nominations and packaging investment opportunities</li>
+            <li>Outreach to fund managers and investors to match Georgia opportunities with capital</li>
+          </ul>
+          <p>Details on these programs will be announced following the designation process. Communities can share feedback on what would be most helpful in the Program Feedback section of the nomination form.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: WHO SHOULD -->
+    <div class="faq-section" id="who-should">
+      <h2 class="faq-section-title">Who Should Nominate</h2>
+      <p class="faq-section-intro">Anyone can submit a nomination — but strong nominations come from people close to the community or the project.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Who can submit a nomination? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Any individual or organization can submit a nomination. The strongest nominations typically come from:</p>
+          <ul>
+            <li><strong>Local and county governments</strong> — nominating tracts based on community plans and economic development priorities</li>
+            <li><strong>Economic development organizations</strong> — regional planning commissions, EDOs, and chambers familiar with local investment conditions</li>
+            <li><strong>Developers and project sponsors</strong> — who have a specific site or project in mind and can speak to investment readiness</li>
+            <li><strong>Business owners</strong> — looking to expand, relocate, or establish operations within an eligible tract</li>
+            <li><strong>Qualified Opportunity Funds</strong> — actively looking for investable projects and tracts</li>
+          </ul>
+          <p>You do not need to be a developer or have a specific project to nominate. A city government or community organization nominating a tract for its economic development potential is equally valid.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Can I nominate more than one tract? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Yes. You may submit nominations for multiple tracts. Each tract requires its own form. There is no hard cap on the number of nominations you can submit.</p>
+          <p>That said, quality matters more than quantity. A focused nomination that clearly explains why a specific tract deserves designation — with evidence of investment readiness — will be more persuasive than a large volume of generic nominations. We encourage you to prioritize your strongest opportunities.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Can a developer or investor nominate a tract for their own project? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Yes. This is explicitly encouraged. If you have a specific project that would be enabled by OZ designation, you are exactly the kind of nominator the state wants to hear from. Being transparent about your relationship to the project — and demonstrating that the project is real, ready, and would genuinely benefit from OZ capital — strengthens your nomination.</p>
+          <div class="note">This is not a developer-driven program in the sense that the state is simply rubber-stamping developer requests. Nominations will be evaluated on community fit, investment readiness, and alignment with Georgia's economic development priorities.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: HOW USED -->
+    <div class="faq-section" id="how-used">
+      <h2 class="faq-section-title">How Nominations Are Used</h2>
+      <p class="faq-section-intro">What DCA does with nominations and how selections are made.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">How will DCA use nomination submissions to select tracts? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Nominations inform — but do not determine — the state's final selections. DCA will review all submissions and use them alongside its own analysis to identify the strongest candidates. Factors considered include:</p>
+          <ul>
+            <li>Investment readiness and project credibility</li>
+            <li>Evidence that OZ designation would materially change outcomes (close a gap, accelerate timing)</li>
+            <li>Alignment with Georgia's economic development priorities</li>
+            <li>Geographic diversity across the state</li>
+            <li>Poverty rate and distress indicators of the tract</li>
+          </ul>
+          <p>Submitting a nomination does not guarantee selection. Multiple nominations for the same tract may strengthen the case for that tract.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Is my nomination public? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Nomination submissions are used by DCA for the selection process. The state may publish aggregate information about nominations received. Individual nomination details — including project descriptions, financial information, and contact details — are treated as confidential and not shared publicly without consent.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Will I be notified whether my nominated tract was selected? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Yes. DCA will notify nominators once selections are finalized. Final designations will also be published publicly following the federal deadline of September 29, 2026. A confirmation copy of your nomination will be emailed to you immediately upon submission.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: STRONG NOMINATION -->
+    <div class="faq-section" id="strong">
+      <h2 class="faq-section-title">What Makes a Strong Nomination</h2>
+      <p class="faq-section-intro">Practical guidance on what to focus on and what to avoid.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What does a strong nomination look like? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>The strongest nominations share three characteristics:</p>
+          <ul>
+            <li><strong>The designation materially changes outcomes</strong> — OZ equity would close a genuine financing gap, accelerate a project that would otherwise take years longer, or attract capital that wouldn't otherwise consider this location.</li>
+            <li><strong>The tract is genuinely investable</strong> — there's infrastructure, market demand, site control or potential, and some evidence that the private sector sees opportunity here — even if it hasn't fully committed yet.</li>
+            <li><strong>The investment advances community goals</strong> — the project or development type aligns with what residents, local governments, and the state actually want to see happen in that community.</li>
+          </ul>
+          <p>Project-level detail significantly strengthens a nomination. Nominations that describe a specific project, sponsor, site, and financing approach are weighted more heavily than general tract nominations.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What are common mistakes to avoid? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <ul>
+            <li><strong>Nominating every eligible tract in your county</strong> — this dilutes the strength of your actual priorities. Submit nominations where you have genuine evidence of investment opportunity.</li>
+            <li><strong>Assuming distress alone is sufficient</strong> — the state is looking for tracts where OZ designation will actually attract investment, not simply the most disadvantaged areas.</li>
+            <li><strong>Vague project descriptions</strong> — "mixed-use development" without a sponsor, site, or scale is much weaker than a named project with a developer attached.</li>
+            <li><strong>Ignoring OZ eligibility rules</strong> — if your project involves substantial improvement of an existing building, confirm you can double the adjusted basis within 30 months. If it's a business, confirm the 70% asset test is achievable.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Does my project need to be shovel-ready to nominate? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>No. Projects at every stage of readiness are welcome — from early concept to shovel-ready. However, the more advanced your project, the stronger your nomination will be. A project in the permitting stage with site control and identified financing is far more persuasive than a concept with no site and no sponsor.</p>
+          <p>If you're nominating based on a tract's investment potential rather than a specific project, that's also valid. Be clear about why you believe the tract is investable and what signals of interest you're seeing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7: FORM HELP -->
+    <div class="faq-section" id="form-help">
+      <h2 class="faq-section-title">Completing the Form</h2>
+      <p class="faq-section-intro">Tips on specific form questions and how to navigate the nomination process.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">How do I find the GEOID for the census tract I want to nominate? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>The GEOID is the unique 11-digit identifier for a census tract. On the nomination form, you can select your county first and the tract list will filter to eligible tracts in that county. If you don't know which tract a specific address falls within, use the "Search by address" link on the Census Tract page of the form.</p>
+          <p>You can also use the Census Bureau's geocoder tool at <a class="link">geocoding.geo.census.gov</a> or the FFIEC's Geocomapfree tool to look up tract information by address.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What's the difference between the two nomination paths — "tract investment potential" vs. "specific project in mind"? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p><strong>Tract investment potential</strong> is for nominators who believe a tract deserves OZ designation based on its economic development characteristics — market fundamentals, infrastructure, location, development conditions — but who do not have a specific project attached. Local governments and EDOs often nominate this way.</p>
+          <p><strong>Specific project in mind</strong> is for nominators who can describe a defined project, business expansion, or development opportunity that OZ designation would directly enable. This path collects more detail about the project, site, developer, readiness, and financing.</p>
+          <p>Both paths are valid. Nominations with specific project detail are generally stronger because they demonstrate that investment is not just possible but imminent.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What should I upload in the Supporting Documents section? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Upload a project prospectus or overview document — a concise summary of the project, investment opportunity, and community impact. One-pagers and brief excerpts are preferred over full plans or lengthy studies.</p>
+          <p>If you don't have a formal prospectus, a brief memo, executive summary, or site plan excerpt is fine. The goal is to give DCA reviewers enough context to understand the project quickly.</p>
+          <p>You can also add up to three links to relevant external resources — a local comprehensive plan, redevelopment study, developer website, or other supporting material.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Can I save my nomination and come back to it later? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>The current version of this form does not support draft saving. We recommend completing the form in one session, or drafting your answers in a separate document before entering them. You can also submit a nomination with partial information and follow up with supplemental material — contact DCA at [email address] to do so.</p>
+          <div class="note">Draft-saving functionality may be added before the August 15, 2026 deadline. Check back or contact DCA for updates.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 8: AFTER -->
+    <div class="faq-section" id="after">
+      <h2 class="faq-section-title">What Happens After Nomination</h2>
+      <p class="faq-section-intro">The process from submission to designation to investment eligibility.</p>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What is the timeline from nomination to investment eligibility? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <ul>
+            <li><strong>August 15, 2026</strong> — Georgia nomination deadline</li>
+            <li><strong>September 29, 2026</strong> — Federal deadline for Georgia to submit designations to Treasury</li>
+            <li><strong>Late 2026</strong> — Treasury certifies designations and publishes final OZ 2.0 tract list</li>
+            <li><strong>January 1, 2027</strong> — OZ 2.0 investment eligibility begins; new QOF investments in designated tracts qualify for OZ tax benefits</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">If my tract is designated, what comes next for my project? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>Designation opens the door — it doesn't automatically bring capital. Once your tract is designated, the work of attracting OZ investment begins:</p>
+          <ul>
+            <li>Your project needs to be packaged in a way that is attractive to QOFs and OZ investors</li>
+            <li>You'll need to connect with Qualified Opportunity Funds that are interested in your project type and geography</li>
+            <li>The project sponsor or developer will need to work with legal and financial advisors to structure a compliant OZ investment</li>
+          </ul>
+          <p>Georgia's DCA and economic development partners will provide resources to help connect projects with investors following designation. Details will be announced after the selection process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">What if my tract is not selected? <span class="faq-chevron">▼</span></div>
+        <div class="faq-a">
+          <p>With 942 eligible tracts and only 236 to be designated, most nominated tracts will not be selected. If your tract is not designated, OZ investment will not be available — but many other state and federal programs remain available for economic development in eligible communities.</p>
+          <p>DCA will provide information on alternative programs and resources for communities whose tracts are not selected. Contact DCA at [email address] for more information.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXTERNAL LINKS -->
+    <div class="links-box">
+      <h3>Additional Resources</h3>
+      <div class="ext-link">
+        <span class="ext-link-icon">🏛️</span>
+        <div class="ext-link-content">
+          <a href="https://www.irs.gov/credits-deductions/businesses/opportunity-zones" target="_blank">IRS Opportunity Zones — Official Guidance ↗</a>
+          <p>IRS rules, regulations, and FAQs on OZ program requirements, QOF formation, and investor eligibility.</p>
+        </div>
+      </div>
+      <div class="ext-link">
+        <span class="ext-link-icon">📊</span>
+        <div class="ext-link-content">
+          <a href="https://eig.org/opportunityzones" target="_blank">Economic Innovation Group — OZ Research ↗</a>
+          <p>Data, research, and policy analysis on the OZ program's impact nationally and by state.</p>
+        </div>
+      </div>
+      <div class="ext-link">
+        <span class="ext-link-icon">🍑</span>
+        <div class="ext-link-content">
+          <a href="https://www.dca.ga.gov" target="_blank">Georgia Department of Community Affairs ↗</a>
+          <p>Georgia's lead agency for the OZ 2.0 nomination process and related economic development programs.</p>
+        </div>
+      </div>
+      <div class="ext-link">
+        <span class="ext-link-icon">🗺️</span>
+        <div class="ext-link-content">
+          <a href="https://geocoding.geo.census.gov" target="_blank">Census Bureau Geocoder ↗</a>
+          <p>Look up the census tract for any address in the U.S. — useful for identifying your tract's GEOID.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function toggle(el) {
+    const answer = el.nextElementSibling;
+    const isOpen = el.classList.contains('open');
+    el.classList.toggle('open', !isOpen);
+    answer.classList.toggle('open', !isOpen);
+  }
+
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Highlight active sidebar link on scroll
+  const sections = ['what-are-oz','oz-2','georgia','who-should','how-used','strong','form-help','after'];
+  window.addEventListener('scroll', () => {
+    let current = sections[0];
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    }
+    document.querySelectorAll('.sidebar-link').forEach(l => {
+      l.classList.toggle('active', l.getAttribute('onclick') === `scrollTo('${current}')`);
+    });
+  });
+</script>
+</body>
+</html>
